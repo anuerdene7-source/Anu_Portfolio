@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anu-Ujin Erdenebaatar · Operations &amp; Automation</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2300c9a7'/><text y='.88em' font-size='68' x='16' fill='%230a0d12' font-family='serif' font-weight='900'>A</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0d12;--bg2:#0f1419;--bg3:#141c26;--sur:#16202e;--sur2:#1c2a3a;--bdr:#1e2d40;--bdr2:#243548;--teal:#00c9a7;--tdim:rgba(0,201,167,0.12);--green:#39d98a;--amber:#f5a623;--red:#ff6b8a;--blue:#4da6ff;--purple:#a78bfa;--text:#e8f0f8;--mid:#8fa8c4;--dim:#4a6480;--mono:'DM Mono',monospace;--sans:'Syne',sans-serif;--body:'Outfit',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--body);background:var(--bg);color:var(--text);font-size:15px;line-height:1.65;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(10,13,18,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr)}
+.nav-logo{font-family:var(--mono);font-size:13px;color:var(--teal);letter-spacing:.05em;cursor:pointer}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links button{background:transparent;border:none;font-family:var(--mono);font-size:11px;color:var(--mid);letter-spacing:.06em;cursor:pointer;padding:5px 10px;border-radius:6px;transition:all .2s}
+.nav-links button:hover,.nav-links button.active{color:var(--teal);background:var(--tdim)}
+.nav-res{background:var(--teal)!important;color:#0a0d12!important;font-weight:700!important}
+.page{display:none;min-height:100vh;padding-top:58px}
+.page.active{display:block}
+#page-home{padding-top:0;position:relative;overflow:hidden}
+#vbg{position:fixed;inset:0;z-index:0}
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:90px 48px 60px;max-width:900px;margin:0 auto}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--teal);letter-spacing:.15em;text-transform:uppercase;margin-bottom:20px;opacity:0;animation:fadeUp .6s ease forwards .1s}
+.hero-tag::before{content:'';width:20px;height:1px;background:var(--teal)}
+.hero-name{font-family:var(--sans);font-size:clamp(2.8rem,7vw,5rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:18px;opacity:0;animation:fadeUp .6s ease forwards .2s}
+.hero-name .ac{color:var(--teal)}
+.hero-tag2{font-family:var(--mono);font-size:.7rem;color:var(--teal);background:var(--tdim);border:1px solid rgba(0,201,167,.2);border-radius:20px;padding:4px 14px;display:inline-flex;align-items:center;gap:6px;margin-bottom:16px;opacity:0;animation:fadeUp .6s ease forwards .25s;width:fit-content}
+.hero-tagline{font-size:clamp(.95rem,2.5vw,1.12rem);color:var(--mid);max-width:560px;margin-bottom:32px;line-height:1.75;opacity:0;animation:fadeUp .6s ease forwards .3s}
+.hero-tagline strong{color:var(--text)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;opacity:0;animation:fadeUp .6s ease forwards .4s}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:8px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.04em;text-decoration:none;transition:all .2s;cursor:pointer;border:none}
+.btn-p{background:var(--teal);color:#0a0d12}
+.btn-p:hover{background:#00e8c0;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,201,167,.3)}
+.btn-g{background:transparent;color:var(--mid);border:1px solid var(--bdr2)}
+.btn-g:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px)}
+.istrip{position:relative;z-index:1;background:rgba(22,32,46,.96);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);padding:40px 48px;backdrop-filter:blur(12px)}
+.istrip-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px}
+.il{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.it{font-size:.88rem;color:var(--mid);line-height:1.7}
+.it strong{color:var(--text)}
+.sec{max-width:980px;margin:0 auto;padding:72px 48px}
+.sec-ey{font-family:var(--mono);font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.sec-ti{font-family:var(--sans);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--text);margin-bottom:10px}
+.sec-de{font-size:.9rem;color:var(--mid);max-width:560px;margin-bottom:48px;line-height:1.75}
+.cases{display:flex;flex-direction:column;gap:28px}
+.case{background:var(--sur);border:1px solid var(--bdr);border-radius:16px;overflow:hidden;transition:transform .3s cubic-bezier(.34,1.2,.64,1),box-shadow .3s,border-color .3s}
+.case:hover{transform:translateY(-5px) scale(1.004);box-shadow:0 20px 60px rgba(0,201,167,.1);border-color:rgba(0,201,167,.3)}
+.case-head{padding:24px 28px 20px;border-bottom:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.cn{font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:5px}
+.ct{font-family:var(--sans);font-size:1.08rem;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:6px}
+.ibadge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.7rem;font-weight:600;color:var(--teal);background:var(--tdim);border:1px solid rgba(0,201,167,.25);border-radius:20px;padding:3px 12px}
+.badges{display:flex;gap:6px;flex-wrap:wrap;flex-shrink:0}
+.badge{font-family:var(--mono);font-size:.6rem;font-weight:700;padding:3px 10px;border-radius:100px}
+.b-r{background:rgba(57,217,138,.15);color:var(--green)}
+.b-c{background:rgba(167,139,250,.15);color:var(--purple)}
+.b-t{background:var(--tdim);color:var(--teal)}
+.b-p{background:rgba(245,166,35,.15);color:var(--amber)}
+.case-anim{border-bottom:1px solid var(--bdr);background:var(--bg2);padding:24px 28px;position:relative;overflow:hidden;min-height:200px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.anim-actions{position:absolute;bottom:10px;right:10px;display:flex;gap:6px;z-index:3}
+.demo-btn{background:var(--teal);color:#0a0d12;border:none;border-radius:7px;padding:6px 14px;font-family:var(--mono);font-size:.68rem;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.04em}
+.demo-btn:hover{background:#00e8c0;transform:translateY(-1px)}
+.rpl-btn{background:transparent;border:1px solid var(--bdr2);border-radius:6px;padding:5px 10px;font-family:var(--mono);font-size:.62rem;font-weight:600;color:var(--dim);cursor:pointer;transition:all .2s}
+.rpl-btn:hover{background:var(--tdim);color:var(--teal);border-color:var(--teal)}
+.hover-hint{position:absolute;top:8px;left:12px;font-family:var(--mono);font-size:.56rem;color:var(--dim);letter-spacing:.06em;opacity:.6}
+.mseq{display:flex;align-items:center;gap:14px;width:100%;justify-content:center;flex-wrap:nowrap}
+.mframe{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px}
+.flbl{font-family:var(--mono);font-size:.56rem;font-weight:600;color:var(--dim);text-align:center;letter-spacing:.05em;text-transform:uppercase}
+.sarr{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0}
+.sarr-l{width:28px;height:2px;background:var(--bdr2);position:relative}
+.sarr-l::after{content:'►';position:absolute;right:-7px;top:50%;transform:translateY(-50%);font-size:7px;color:var(--dim)}
+.sarr-t{font-family:var(--mono);font-size:.56rem;color:var(--dim);white-space:nowrap}
+.aw{border-radius:8px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.4)}
+.wc{background:#1a2332;padding:7px 10px;display:flex;align-items:center;gap:5px;border-bottom:1px solid var(--bdr)}
+.wd{width:9px;height:9px;border-radius:50%}
+.wd.r{background:#FF5F57}.wd.y{background:#FEBC2E}.wd.g{background:#28C840}
+.wt{font-family:var(--mono);font-size:.56rem;color:var(--dim);margin-left:6px}
+.gs{width:276px;background:#141c26}
+.gs-bar{background:#1a2535;padding:5px 10px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--bdr)}
+.gs-ic{width:18px;height:18px;background:#0F9D58;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.gs-tt{font-family:var(--mono);font-size:.66rem;color:var(--mid)}
+.gs-rb{margin-left:auto;background:#1a73e8;color:white;border:none;padding:3px 10px;border-radius:4px;font-family:var(--mono);font-size:.6rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s}
+.gs-rb.done{background:#0F9D58}
+.gs-hr{display:grid;background:#111a28;border-bottom:1px solid var(--bdr)}
+.gs-ch{padding:4px 6px;font-family:var(--mono);font-size:.54rem;color:var(--dim);font-weight:700;text-align:center;border-right:1px solid var(--bdr);text-transform:uppercase}
+.gs-row{display:grid;border-bottom:1px solid rgba(30,45,64,.5);opacity:0;transform:translateY(3px);transition:opacity .3s ease,transform .3s ease}
+.gs-row.show{opacity:1;transform:translateY(0)}
+.gs-rn{padding:4px 6px;font-family:var(--mono);font-size:.54rem;color:var(--dim);text-align:center;background:#111a28;border-right:1px solid var(--bdr)}
+.gs-cell{padding:4px 7px;font-family:var(--mono);font-size:.62rem;color:var(--mid);border-right:1px solid rgba(30,45,64,.5);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gs-cell.bad{background:rgba(255,107,138,.1);color:var(--red)}
+.gs-cell.warn{background:rgba(245,166,35,.1);color:var(--amber)}
+.gs-cell.ok{background:rgba(57,217,138,.08);color:var(--green)}
+.gs-cell.okb{background:rgba(57,217,138,.12);color:var(--green);font-weight:700}
+.sf{width:230px;background:#0f1825}
+.sf-hd{background:#00A1E0;padding:8px 12px;display:flex;align-items:center;gap:8px}
+.sf-logo{color:white;font-size:.7rem;font-weight:800}
+.sf-logo span{opacity:.7;font-weight:400}
+.sf-nav{background:#005FB2;padding:4px 12px;display:flex;gap:10px}
+.sf-ni{color:rgba(255,255,255,.6);font-size:.56rem;font-weight:600}
+.sf-ni.act{color:white;border-bottom:2px solid white;padding-bottom:2px}
+.sf-body{padding:10px 12px;background:#111e2e}
+.sf-st{font-family:var(--mono);font-size:.54rem;font-weight:700;color:var(--dim);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+.sf-rec{background:#1a2535;border-radius:4px;padding:7px 10px;margin-bottom:5px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--bdr);opacity:0;transform:translateX(-4px);transition:opacity .3s,transform .3s}
+.sf-rec.show{opacity:1;transform:translateX(0)}
+.sf-rn{font-size:.62rem;font-weight:600;color:var(--text)}
+.sf-rs{font-family:var(--mono);font-size:.52rem;color:var(--dim)}
+.sf-badge{font-family:var(--mono);font-size:.52rem;font-weight:700;padding:2px 7px;border-radius:100px}
+.sf-badge.open{background:rgba(77,166,255,.15);color:var(--blue)}
+.sf-badge.up{background:rgba(57,217,138,.15);color:var(--green)}
+.sf-badge.down{background:rgba(245,166,35,.15);color:var(--amber)}
+.slack{display:flex;border-radius:8px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.4)}
+.slk-s{background:#1a1124;width:124px;flex-shrink:0;padding:10px 0}
+.slk-ws{color:white;font-family:var(--mono);font-size:.62rem;font-weight:800;padding:6px 12px 10px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:6px}
+.slk-ch{padding:3px 12px;color:rgba(255,255,255,.5);font-family:var(--mono);font-size:.58rem;cursor:pointer;display:flex;align-items:center;gap:5px}
+.slk-ch::before{content:'#';opacity:.4}
+.slk-ch.act{background:rgba(255,255,255,.12);color:white;font-weight:600}
+.slk-un{background:#CD2553;color:white;font-family:var(--mono);font-size:.5rem;font-weight:700;border-radius:100px;padding:1px 5px;margin-left:auto}
+.slk-m{background:#1a1f2e;flex:1;display:flex;flex-direction:column;min-width:0}
+.slk-hd{padding:7px 12px;border-bottom:1px solid var(--bdr)}
+.slk-cn{font-family:var(--mono);font-size:.62rem;font-weight:700;color:var(--text)}
+.slk-cn::before{content:'# ';color:var(--dim)}
+.slk-msgs{padding:8px;flex:1}
+.slk-msg{display:flex;gap:7px;margin-bottom:8px;opacity:0;transform:translateY(6px);transition:opacity .35s ease,transform .35s ease}
+.slk-msg.show{opacity:1;transform:translateY(0)}
+.slk-av{width:28px;height:28px;border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:white}
+.slk-meta{font-family:var(--mono);font-size:.54rem;margin-bottom:2px}
+.slk-meta .nm{font-weight:700;color:var(--text)}
+.slk-meta .tm{color:var(--dim);margin-left:4px}
+.slk-txt{font-size:.62rem;color:var(--mid);line-height:1.5}
+.slk-txt .mn{background:rgba(77,166,255,.15);color:var(--blue);border-radius:3px;padding:0 3px}
+.slk-alert{background:rgba(255,107,138,.08);border-left:3px solid var(--red);border-radius:0 4px 4px 0;padding:6px 8px;margin-top:3px}
+.slk-at{font-family:var(--mono);font-size:.62rem;font-weight:700;color:var(--red);margin-bottom:2px}
+.slk-ab{font-size:.58rem;color:var(--mid);line-height:1.5}
+.slk-ok{background:rgba(57,217,138,.08);border-left:3px solid var(--green);border-radius:0 4px 4px 0;padding:6px 8px;margin-top:3px}
+.slk-ot{font-family:var(--mono);font-size:.62rem;font-weight:700;color:var(--green);margin-bottom:2px}
+.slk-ob{font-size:.58rem;color:var(--mid);line-height:1.5}
+.str-win{width:196px;border-radius:8px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.4)}
+.str-hd{background:#0a2540;padding:8px 12px;display:flex;align-items:center;justify-content:space-between}
+.str-logo{color:#fff;font-size:.7rem;font-weight:700}
+.str-logo em{color:#635bff;font-style:normal}
+.str-mode{font-size:.5rem;background:#635bff;color:white;padding:2px 6px;border-radius:3px;font-weight:600;font-family:var(--mono)}
+.str-body{background:#0f1e30;padding:12px}
+.str-card{background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:8px;padding:12px;margin-bottom:10px;border:1px solid var(--bdr)}
+.str-chip{width:22px;height:16px;background:linear-gradient(135deg,#d4af37,#b8960c);border-radius:3px;margin-bottom:8px}
+.str-num{color:rgba(255,255,255,.6);font-family:var(--mono);font-size:.54rem;letter-spacing:2px;margin-bottom:6px}
+.str-ci{display:flex;justify-content:space-between}
+.str-cn,.str-ce{color:rgba(255,255,255,.4);font-family:var(--mono);font-size:.5rem}
+.str-al{font-family:var(--mono);font-size:.54rem;color:var(--dim);margin-bottom:2px}
+.str-am{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:10px}
+.str-btn{width:100%;padding:8px;border:none;border-radius:5px;font-weight:700;font-family:var(--mono);font-size:.66rem;cursor:pointer;transition:all .3s ease}
+.str-btn.ready{background:#635bff;color:white}
+.str-btn.proc{background:#555;color:white;cursor:default}
+.str-btn.fail{background:#df1b41;color:white;animation:shake .4s ease}
+.str-st{text-align:center;margin-top:6px;font-family:var(--mono);font-size:.56rem;height:14px}
+.str-st.err{color:var(--red);font-weight:700}
+.str-st.spin{color:var(--dim)}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+.n-win{width:200px;background:#1a1f2e}
+.n-hd{background:#141c26;padding:6px 10px;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--bdr)}
+.n-tt{font-size:.62rem;font-weight:700;color:var(--text)}
+.n-body{padding:10px 12px;background:#1a1f2e}
+.n-h1{font-size:.76rem;font-weight:700;color:var(--text);margin-bottom:6px;opacity:0;transition:opacity .4s}
+.n-prop{display:flex;align-items:center;gap:6px;margin-bottom:4px;opacity:0;transition:opacity .4s}
+.n-lbl{font-family:var(--mono);font-size:.54rem;color:var(--dim);width:52px;flex-shrink:0}
+.n-val{font-size:.6rem;color:var(--mid);font-weight:500}
+.n-chip{background:var(--sur2);color:var(--mid);font-family:var(--mono);font-size:.52rem;font-weight:600;padding:2px 7px;border-radius:3px}
+.n-chip.g{background:rgba(57,217,138,.12);color:var(--green)}
+.n-div{border:none;border-top:1px solid var(--bdr);margin:8px 0;opacity:0;transition:opacity .4s}
+.n-txt{font-size:.6rem;color:var(--mid);line-height:1.65;opacity:0;transition:opacity .4s}
+.n-prop.show,.n-h1.show,.n-div.show,.n-txt.show{opacity:1}
+.fr-win{border-radius:8px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.4);display:flex;width:256px;background:#141c26}
+.fr-side{width:42px;background:#0f1625;padding:8px 0;display:flex;flex-direction:column;gap:2px;align-items:center}
+.fr-sb{width:32px;height:32px;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:2px}
+.fr-sb.act{background:rgba(0,201,167,.15)}
+.fr-ico{font-size:13px}
+.fr-lbl{font-family:var(--mono);font-size:.4rem;color:var(--dim)}
+.fr-m{flex:1;display:flex;flex-direction:column}
+.fr-top{padding:7px 10px;background:#141c26;border-bottom:1px solid var(--bdr);display:flex;align-items:center}
+.fr-inbox{font-family:var(--mono);font-size:.63rem;font-weight:700;color:var(--text)}
+.fr-tick{padding:8px 10px;border-bottom:1px solid var(--bdr);opacity:0;transform:translateY(4px);transition:opacity .3s,transform .3s}
+.fr-tick.show{opacity:1;transform:translateY(0)}
+.fr-subj{font-size:.64rem;font-weight:600;color:var(--text);margin-bottom:2px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.fr-sub{font-family:var(--mono);font-size:.54rem;color:var(--dim)}
+.ttag{font-family:var(--mono);font-size:.52rem;font-weight:700;padding:1px 6px;border-radius:20px;opacity:0;transition:opacity .25s}
+.ttag.show{opacity:1}
+.ttag.b{background:rgba(245,166,35,.15);color:var(--amber)}
+.ttag.bug{background:rgba(255,107,138,.15);color:var(--red)}
+.ttag.f{background:rgba(77,166,255,.15);color:var(--blue)}
+.ttag.g{background:rgba(57,217,138,.15);color:var(--green)}
+.case-det{display:none}
+.case-det.open{display:block}
+.cgrid{display:grid;grid-template-columns:repeat(4,1fr)}
+.col{padding:18px 20px;border-right:1px solid var(--bdr)}
+.col:last-child{border-right:none}
+.col-hd{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.dp{background:var(--red)}.ds{background:var(--blue)}.di{background:var(--green)}.dw{background:var(--purple)}
+.col-lbl{font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.col-txt{font-size:.8rem;color:var(--mid);line-height:1.6}
+.col-txt strong{color:var(--text);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.chip{background:var(--sur2);color:var(--dim);font-family:var(--mono);font-size:.58rem;font-weight:600;padding:2px 8px;border-radius:4px;border:1px solid var(--bdr)}
+.bnum{font-family:var(--sans);font-size:1.8rem;font-weight:800;color:var(--teal);display:block;margin-bottom:3px;line-height:1}
+.ctog{width:100%;padding:12px 20px;background:transparent;border:none;border-top:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--mono);font-size:.7rem;font-weight:600;color:var(--dim);cursor:pointer;transition:all .2s}
+.ctog:hover{color:var(--teal);background:var(--tdim)}
+.ctog.open .ti{transform:rotate(180deg)}
+.ti{transition:transform .25s;font-size:.65rem}
+.lbox{display:none;padding:14px 20px;background:rgba(167,139,250,.05);border-top:1px solid rgba(167,139,250,.15)}
+.lbox.show{display:block}
+.lbox-l{font-family:var(--mono);font-size:.65rem;font-weight:700;color:var(--purple);margin-bottom:6px}
+.lbox-t{font-size:.82rem;color:var(--mid);line-height:1.65}
+.c-note{padding:10px 20px;font-family:var(--mono);font-size:.65rem;color:var(--purple);background:rgba(167,139,250,.05);border-top:1px solid rgba(167,139,250,.15)}
+.ah-hero{background:linear-gradient(135deg,var(--bg2) 0%,var(--bg3) 100%);border-bottom:1px solid var(--bdr);padding:60px 48px 48px}
+.ah-in{max-width:800px;margin:0 auto}
+.ah-nm{font-family:var(--sans);font-size:clamp(2rem,5vw,3.2rem);font-weight:800;margin-bottom:10px}
+.ah-nm .ac{color:var(--teal)}
+.ah-role{font-family:var(--mono);font-size:.76rem;color:var(--mid);letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px}
+.loc-tags{display:flex;flex-wrap:wrap;gap:8px}
+.ltag{display:inline-flex;align-items:center;gap:6px;background:var(--sur);border:1px solid var(--bdr);border-radius:20px;padding:5px 14px;font-family:var(--mono);font-size:.68rem;color:var(--mid)}
+.ab-body{max-width:800px;margin:0 auto;padding:48px}
+.a-sec{margin-bottom:48px}
+.a-slbl{font-family:var(--mono);font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.a-slbl::after{content:'';flex:1;max-width:40px;height:1px;background:var(--teal);opacity:.4}
+.a-txt p{font-size:.95rem;color:var(--mid);line-height:1.85;margin-bottom:16px}
+.a-txt strong{color:var(--text);font-weight:600}
+.a-phil{background:var(--sur);border:1px solid var(--bdr);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:20px 24px;font-family:var(--mono);font-size:.78rem;color:var(--mid);line-height:1.8;margin-top:24px}
+.a-phil .hi{color:var(--teal)}
+.vid-ph{background:var(--sur);border:1px solid var(--bdr);border-radius:12px;padding:40px;text-align:center;margin-bottom:20px}
+.cert-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:10px;padding:16px 20px;display:flex;align-items:center;gap:16px}
+.cert-ic{width:40px;height:40px;background:var(--tdim);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.cert-nm{font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:2px}
+.cert-is{font-family:var(--mono);font-size:.66rem;color:var(--dim)}
+.cert-st{margin-left:auto;font-family:var(--mono);font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:20px;background:rgba(245,166,35,.15);color:var(--amber);flex-shrink:0}
+.scat{margin-bottom:40px}
+.scat-l{font-family:var(--mono);font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--bdr)}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.sitem{background:var(--sur);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:10px;transition:all .2s}
+.sitem:hover{border-color:var(--teal);background:var(--tdim);transform:translateY(-2px)}
+.slogo{width:28px;height:28px;flex-shrink:0;border-radius:6px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:transparent}
+.slogo img{width:28px;height:28px;object-fit:contain;display:block}
+.slogo .fb{font-family:var(--mono);font-size:6.5px;color:var(--dim);font-weight:700;background:var(--sur2);width:100%;height:100%;display:flex;align-items:center;justify-content:center;border-radius:6px;text-align:center;line-height:1.1;padding:2px}
+.sname{font-family:var(--mono);font-size:.7rem;color:var(--mid)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.pcard{background:var(--sur);border:1px solid var(--bdr);border-radius:12px;overflow:hidden;transition:all .25s}
+.pcard:hover{border-color:var(--teal);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,201,167,.1)}
+.pcard-h{padding:20px 20px 0;display:flex;justify-content:space-between;align-items:flex-start}
+.pcard-ico{font-size:2rem}
+.pcard-b{padding:14px 20px 20px}
+.pcard-ti{font-family:var(--sans);font-size:1rem;font-weight:700;margin-bottom:6px;color:var(--text)}
+.pcard-de{font-size:.82rem;color:var(--mid);line-height:1.65;margin-bottom:14px}
+.csect{background:var(--sur);border-top:1px solid var(--bdr);padding:60px 48px;text-align:center}
+.ci{max-width:580px;margin:0 auto}
+.c-ti{font-family:var(--sans);font-size:2rem;font-weight:800;margin-bottom:10px}
+.c-sub{color:var(--mid);font-size:.9rem;margin-bottom:28px;line-height:1.7}
+.c-lnks{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+.clink{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.72rem;color:var(--mid);text-decoration:none;padding:9px 16px;border:1px solid var(--bdr2);border-radius:8px;transition:all .2s}
+.clink:hover{color:var(--teal);border-color:var(--teal);transform:translateY(-2px)}
+.mov{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:500;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px)}
+.mov.open{display:flex}
+.modal{background:var(--sur);border:1px solid var(--bdr2);border-radius:16px;width:100%;max-width:700px;max-height:92vh;overflow-y:auto;position:relative}
+.modal.chess-modal{max-width:min(640px,96vw)}
+.m-hd{padding:16px 22px;border-bottom:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--sur);z-index:1}
+.m-ti{font-family:var(--sans);font-size:.95rem;font-weight:700;color:var(--text)}
+.m-cl{background:transparent;border:none;color:var(--dim);font-size:1.2rem;cursor:pointer;padding:4px 8px;border-radius:4px;transition:all .2s}
+.m-cl:hover{color:var(--text);background:var(--sur2)}
+.m-body{padding:18px}
+.m-note{font-family:var(--mono);font-size:.7rem;color:var(--teal);background:var(--tdim);border-radius:6px;padding:8px 14px;margin-bottom:16px;line-height:1.6}
+.tab-bar{display:flex;gap:2px;background:var(--bg2);padding:6px;border-radius:8px;margin-bottom:16px;flex-wrap:wrap}
+.tab-btn{flex:1;min-width:80px;padding:7px 6px;background:transparent;border:none;border-radius:6px;font-family:var(--mono);font-size:.6rem;color:var(--dim);cursor:pointer;transition:all .2s;white-space:nowrap;text-align:center}
+.tab-btn.active{background:var(--sur2);color:var(--teal)}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.kpi{background:var(--bg2);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px}
+.kpi-l{font-family:var(--mono);font-size:.52rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.kpi-v{font-family:var(--sans);font-size:1.25rem;font-weight:800;line-height:1}
+.kpi-ch{font-family:var(--mono);font-size:.56rem;margin-top:3px}
+.kpi.up .kpi-v{color:var(--green)}.kpi.up .kpi-ch{color:var(--green)}
+.kpi.warn .kpi-v{color:var(--amber)}.kpi.warn .kpi-ch{color:var(--amber)}
+.kpi.bad .kpi-v{color:var(--red)}.kpi.bad .kpi-ch{color:var(--red)}
+.kpi.neu .kpi-v{color:var(--blue)}.kpi.neu .kpi-ch{color:var(--blue)}
+.dt-table{width:100%;border-collapse:collapse;font-size:.72rem}
+.dt-table th{font-family:var(--mono);font-size:.56rem;color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:6px 10px;border-bottom:1px solid var(--bdr);text-align:left}
+.dt-table td{padding:8px 10px;border-bottom:1px solid rgba(30,45,64,.4);color:var(--mid)}
+.dt-table tr:hover td{background:rgba(0,201,167,.04)}
+.dt-table .hi{color:var(--text);font-weight:600}
+.dt-table .ok{color:var(--green)}
+.dt-table .warn{color:var(--amber)}
+.dt-table .bad{color:var(--red)}
+.dt-table .neu{color:var(--blue)}
+.health-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bdr)}
+.health-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.health-dot.ok{background:var(--green)}.health-dot.warn{background:var(--amber)}.health-dot.bad{background:var(--red)}
+.health-name{font-family:var(--mono);font-size:.72rem;color:var(--text);flex:1}
+.health-score{font-family:var(--mono);font-size:.7rem;font-weight:700}
+.health-bar-wrap{flex:1;max-width:80px;height:4px;background:var(--bdr);border-radius:2px;overflow:hidden}
+.health-bar{height:100%;border-radius:2px;transition:width .8s ease}
+.clog-entry{padding:10px 0;border-bottom:1px solid rgba(30,45,64,.4)}
+.clog-date{font-family:var(--mono);font-size:.58rem;color:var(--dim);margin-bottom:4px}
+.clog-type{font-family:var(--mono);font-size:.62rem;font-weight:700;margin-bottom:4px}
+.clog-type.opt{color:var(--green)}.clog-type.issue{color:var(--red)}.clog-type.change{color:var(--amber)}
+.clog-desc{font-size:.78rem;color:var(--mid);line-height:1.55}
+.clog-result{font-family:var(--mono);font-size:.66rem;color:var(--teal);margin-top:4px}
+.chatdemo{background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;overflow:hidden}
+.chat-hd{background:var(--sur);padding:10px 14px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:10px}
+.chat-av{width:30px;height:30px;background:var(--tdim);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px}
+.chat-bn{font-family:var(--sans);font-size:.82rem;font-weight:700;color:var(--text)}
+.chat-bs{font-family:var(--mono);font-size:.6rem;color:var(--teal)}
+.chat-msgs{padding:12px;height:220px;overflow-y:auto;display:flex;flex-direction:column;gap:10px}
+.cm{max-width:84%;padding:9px 13px;border-radius:10px;font-size:.78rem;line-height:1.55}
+.cm.bot{background:var(--sur);color:var(--mid);align-self:flex-start;border-bottom-left-radius:2px}
+.cm.usr{background:var(--tdim);color:var(--teal);align-self:flex-end;border-bottom-right-radius:2px;font-family:var(--mono);font-size:.72rem}
+.cm.bot strong{color:var(--teal)}
+.chat-ir{padding:10px 12px;border-top:1px solid var(--bdr);display:flex;gap:8px}
+.chat-in{flex:1;background:var(--sur);border:1px solid var(--bdr);border-radius:8px;padding:8px 12px;font-family:var(--mono);font-size:.7rem;color:var(--text);outline:none;transition:border-color .2s}
+.chat-in:focus{border-color:var(--teal)}
+.chat-in::placeholder{color:var(--dim)}
+.chat-snd{background:var(--teal);color:#0a0d12;border:none;border-radius:8px;padding:8px 12px;font-family:var(--mono);font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s}
+.chat-snd:hover{background:#00e8c0}
+.typing{display:none;align-self:flex-start;padding:9px 13px;background:var(--sur);border-radius:10px;border-bottom-left-radius:2px;gap:4px}
+.typing.show{display:flex}
+.tdot{width:6px;height:6px;border-radius:50%;background:var(--dim);animation:tb 1.2s ease infinite}
+.tdot:nth-child(2){animation-delay:.2s}.tdot:nth-child(3){animation-delay:.4s}
+@keyframes tb{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.calc-form{background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;padding:16px;margin-bottom:14px}
+.calc-field{margin-bottom:10px}
+.calc-label{font-family:var(--mono);font-size:.6rem;color:var(--dim);margin-bottom:4px;display:block;text-transform:uppercase;letter-spacing:.08em}
+.calc-input{width:100%;background:var(--sur);border:1px solid var(--bdr);border-radius:6px;padding:8px 12px;font-family:var(--mono);font-size:.75rem;color:var(--text);outline:none;transition:border-color .2s}
+.calc-input:focus{border-color:var(--teal)}
+.calc-result{background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;padding:14px;display:none}
+.calc-result.show{display:block}
+.calc-result-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.cr-item{background:var(--sur);border:1px solid var(--bdr);border-radius:6px;padding:10px}
+.cr-label{font-family:var(--mono);font-size:.56rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.cr-value{font-family:var(--sans);font-size:1.1rem;font-weight:800;color:var(--teal)}
+.assign-log{margin-top:10px;background:var(--bg2);border:1px solid var(--bdr);border-radius:6px;padding:10px;max-height:100px;overflow-y:auto}
+.assign-log-entry{font-family:var(--mono);font-size:.6rem;color:var(--green);margin-bottom:3px;opacity:0;transform:translateY(3px);transition:all .2s}
+.assign-log-entry.show{opacity:1;transform:translateY(0)}
+.confirm-badge{margin-top:10px;display:none;background:rgba(57,217,138,.1);border:1px solid var(--green);border-radius:6px;padding:8px 12px;font-family:var(--mono);font-size:.7rem;color:var(--green)}
+.confirm-badge.show{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+footer{padding:20px;text-align:center;font-family:var(--mono);font-size:.62rem;color:var(--dim);border-top:1px solid var(--bdr)}
+@media(max-width:768px){nav{padding:0 16px}.nav-links{display:none}.hero{padding:80px 20px 48px}.sec{padding:48px 20px}.istrip{padding:32px 20px}.istrip-inner{grid-template-columns:1fr}.cgrid{grid-template-columns:1fr 1fr}.ah-hero{padding:40px 20px 32px}.ab-body{padding:32px 20px}.csect{padding:48px 20px}.mseq{flex-wrap:wrap;gap:10px}.gs{width:240px}.kgrid{grid-template-columns:1fr 1fr}.page{padding-bottom:72px}}
+/* Mobile bottom nav */
+.mob-nav{display:none}
+@media(max-width:768px){
+  .mob-nav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:300;background:rgba(10,13,18,.97);border-top:1px solid var(--bdr);backdrop-filter:blur(16px);padding:0;padding-bottom:env(safe-area-inset-bottom)}
+  .mob-nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 4px;background:none;border:none;cursor:pointer;min-height:56px;-webkit-tap-highlight-color:transparent}
+  .mob-nav-btn svg{width:20px;height:20px;stroke:var(--dim);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
+  .mob-nav-btn span{font-family:var(--mono);font-size:.52rem;color:var(--dim);letter-spacing:.04em;transition:color .2s}
+  .mob-nav-btn.active svg{stroke:var(--teal)}
+  .mob-nav-btn.active span{color:var(--teal)}
+  .mob-nav-resume{background:var(--teal);border-radius:10px;margin:6px 2px;flex:0 0 52px;min-height:44px}
+  .mob-nav-resume span{color:#0a0d12;font-weight:700}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">anu.erdenebaatar</div>
+  <ul class="nav-links">
+    <li><button onclick="showPage('home')" id="nav-home" class="active">home</button></li>
+    <li><button onclick="showPage('about')" id="nav-about">about</button></li>
+    <li><button onclick="showPage('work')" id="nav-work">work projects</button></li>
+    <li><button onclick="showPage('concepts')" id="nav-concepts">concepts</button></li>
+    <li><button onclick="showPage('personal')" id="nav-personal">personal</button></li>
+    <li><button onclick="showPage('stack')" id="nav-stack">stack</button></li>
+    <li><a href="Anu-Ujin_E_Resume2026.pdf" target="_blank" class="btn btn-p nav-res" style="font-size:11px;padding:5px 14px">resume</a></li>
+  </ul>
+</nav>
+
+<!-- Mobile bottom navigation -->
+<nav class="mob-nav">
+  <button class="mob-nav-btn active" id="mob-home" onclick="showPage('home')">
+    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>home</span>
+  </button>
+  <button class="mob-nav-btn" id="mob-about" onclick="showPage('about')">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    <span>about</span>
+  </button>
+  <button class="mob-nav-btn" id="mob-work" onclick="showPage('work')">
+    <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+    <span>work</span>
+  </button>
+  <button class="mob-nav-btn" id="mob-concepts" onclick="showPage('concepts')">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+    <span>concepts</span>
+  </button>
+  <button class="mob-nav-btn" id="mob-personal" onclick="showPage('personal')">
+    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <span>projects</span>
+  </button>
+  <button class="mob-nav-btn" id="mob-stack" onclick="showPage('stack')">
+    <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+    <span>stack</span>
+  </button>
+  <button class="mob-nav-btn mob-nav-resume" onclick="window.open('Anu-Ujin_E_Resume2026.pdf','_blank')">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    <span>CV</span>
+  </button>
+</nav>
+
+<div id="page-home" class="page active">
+  <div id="vbg"></div>
+  <div class="hero">
+    <div class="hero-tag">Operations &amp; Automation · Ulaanbaatar, Mongolia</div>
+    <h1 class="hero-name">Anu-Ujin<br><span class="ac">Erdenebaatar</span></h1>
+    <div class="hero-tag2">🌐 Open to globally remote roles · no visa or relocation needed</div>
+    <p class="hero-tagline">Operations manager who builds the automation layer. I find what is broken, work out exactly why, then build systems that fix it permanently. <strong>Every tool here started as a problem costing my team hours they didn't have — and ended as something that runs itself.</strong></p>
+    <div class="hero-actions">
+      <button class="btn btn-p" onclick="showPage('work')">See the work</button>
+      <button class="btn btn-g" onclick="showPage('about')">About me</button>
+      <a href="mailto:anuerdene7@gmail.com" class="btn btn-g">Get in touch</a>
+    </div>
+  </div>
+  <div class="istrip">
+    <div class="istrip-inner">
+      <div><div class="il">30 min → 10 sec</div><div class="it">Campaign intelligence that required <strong>manual cross-referencing across five sheets and two platforms</strong> now answers itself on demand.</div></div>
+      <div><div class="il">Zero false leads</div><div class="it">Platforms flagged autoresponders as interested leads. Built a Zapier correction layer so that <strong>response data is clean at the source, not cleaned up downstream.</strong></div></div>
+      <div><div class="il">Built outside remit</div><div class="it">Hundreds of sender accounts, two outreach platforms, six variables. <strong>Unified into one real-time dashboard with a Claude chatbot.</strong> Self-initiated, zero budget.</div></div>
+    </div>
+  </div>
+  <div class="csect">
+    <div class="ci">
+      <h2 class="c-ti">Let's work together</h2>
+      <p class="c-sub">Open to globally remote ops, automation, and product roles. Independent contractor from Mongolia — no visa or relocation needed.</p>
+      <div class="c-lnks">
+        <a href="mailto:anuerdene7@gmail.com" class="clink">anuerdene7@gmail.com</a>
+        <a href="https://linkedin.com/in/anu-ujin-erdenebaatar" target="_blank" class="clink">LinkedIn</a>
+        <a href="https://github.com/anuerdene7-source" target="_blank" class="clink">GitHub</a>
+      </div>
+    </div>
+  </div>
+  <footer>built by anu-ujin erdenebaatar · ulaanbaatar, mongolia · 2026</footer>
+</div>
+
+<div id="page-about" class="page">
+  <div class="ah-hero">
+    <div class="ah-in">
+      <div class="ah-nm">Anu-Ujin <span class="ac">Erdenebaatar</span></div>
+      <div class="ah-role">Operations &amp; Automation Manager · what3words Ltd</div>
+      <div class="loc-tags">
+        <span class="ltag">🇲🇳 Ulaanbaatar, Mongolia (current)</span>
+        <span class="ltag">🇺🇸 USA · 10 years</span>
+        <span class="ltag">🇯🇵 Japan · 8 years</span>
+        <span class="ltag">🌐 Fully remote · UTC+8</span>
+        <span class="ltag">✈️ Open to globally remote roles</span>
+      </div>
+    </div>
+  </div>
+  <div class="ab-body">
+    <div class="a-sec">
+      <div class="a-slbl">meet me</div>
+      <div class="vid-ph">
+        <div style="font-size:2.5rem;margin-bottom:12px">🎙</div>
+        <div style="font-size:.85rem;color:var(--mid);line-height:1.65">Short intro recording coming soon. If you are reading this from the other side of the world, the easiest way to answer the English question is to just talk.</div>
+      </div>
+    </div>
+    <div class="a-sec">
+      <div class="a-slbl">the story</div>
+      <div class="a-txt">
+        <p>I did not start out as a builder. I started in partnerships at what3words, a global tech company operating across 193 countries. The role covered a lot more than inbound sales — admin, customer success, operational support across the board. At some point I got frustrated enough with the manual side of it and just thought: there has to be a better way.</p>
+        <p>So I taught myself Google Apps Script from documentation. Then the Salesforce API. Then Make, Zapier, and as we introduced new platforms, their REST APIs. Not from courses — from documentation, from breaking things, from building something and then watching it actually work. The moment a tool I built got adopted as the team standard, when people started using something I made to do their jobs better — that was when I knew this was the direction I wanted to go.</p>
+        <p>What I love about operations is the clarity it brings. <strong>Understanding what is actually broken, why it is broken, and what a system would look like that does not break.</strong> Then building it in a way that other people can use — with a button, not a manual, so it actually gets used.</p>
+        <p>I have grown up across three countries — ten years in the US, eight in Japan, and currently back in Mongolia where I work fully remotely. I also co-parent my younger brother. That background shapes how I think: I understand global teams, async communication, and why documentation is not optional when your colleagues are spread across time zones.</p>
+      </div>
+      <div class="a-phil">
+        <span class="hi">// how I think about this work</span><br><br>
+        If you are capturing data correctly and documenting properly,<br>
+        automation should always be possible.<br>
+        The problem is almost never the technology.<br>
+        It is that nobody has questioned whether the manual work<br>
+        needed to exist in the first place.
+      </div>
+    </div>
+    <div class="a-sec">
+      <div class="a-slbl">certification</div>
+      <div class="cert-card">
+        <div class="cert-ic">🔐</div>
+        <div><div class="cert-nm">AI Governance and Security Certificate</div><div class="cert-is">Securiti · AI governance, data privacy, security compliance</div></div>
+        <div class="cert-st">in progress</div>
+      </div>
+    </div>
+  </div>
+  <div class="csect">
+    <div class="ci">
+      <h2 class="c-ti">Open to the right opportunity</h2>
+      <p class="c-sub">Globally remote ops, automation, and product roles — ideally AI-heavy. Independent contractor based in Mongolia. No visa, no relocation, no timezone problems.</p>
+      <div class="c-lnks">
+        <a href="mailto:anuerdene7@gmail.com" class="clink">anuerdene7@gmail.com</a>
+        <a href="https://linkedin.com/in/anu-ujin-erdenebaatar" target="_blank" class="clink">LinkedIn</a>
+        <a href="https://github.com/anuerdene7-source" target="_blank" class="clink">GitHub</a>
+      </div>
+    </div>
+  </div>
+  <footer>built by anu-ujin erdenebaatar · ulaanbaatar, mongolia · 2026</footer>
+</div>
+
+<div id="page-work" class="page">
+  <div class="sec">
+    <div class="sec-ey">real builds · what3words</div>
+    <div class="sec-ti">Work Projects</div>
+    <div class="sec-de">Every project here started as a problem costing real time. I identified it, scoped it, built it — usually outside my official remit, with the access I had. These are not concepts. They are live and in use. Hover any animation to replay it.</div>
+    <div class="cases">
+
+      <!-- 01 CAMPAIGN INTELLIGENCE DASHBOARD -->
+      <div class="case reveal">
+        <div class="case-head" style="flex-direction:column;gap:12px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;width:100%">
+            <div>
+              <div class="cn">01 · Real Build · what3words · v3 active development</div>
+              <div class="ct">Campaign Intelligence Dashboard</div>
+              <div><span class="ibadge">5 sheets · 2 platforms · Claude chatbot · real-time dashboard</span></div>
+            </div>
+            <div class="badges" style="flex-shrink:0"><span class="badge b-r">Live internally</span><span class="badge b-p">v3 active</span></div>
+          </div>
+          <div class="badges" style="flex-wrap:wrap"><span class="badge b-t">Apps Script Web App</span><span class="badge b-t">Instantly API</span><span class="badge b-t">Lemlist API</span><span class="badge b-t">Zapier</span><span class="badge b-t">Slack API</span><span class="badge b-t">Drive API</span><span class="badge b-t">Claude API Chatbot</span><span class="badge b-t">Claude MCP</span><span class="badge b-t">Webhooks</span></div>
+        </div>
+        <div class="case-anim" data-anim="anim1" title="Hover to replay">
+          <span class="hover-hint">hover to replay</span>
+          <div class="mseq">
+            <div class="mframe" style="flex-direction:column;gap:6px">
+              <div style="display:flex;gap:6px;margin-bottom:4px">
+                <div style="background:rgba(0,201,167,.12);border:1px solid rgba(0,201,167,.3);border-radius:6px;padding:4px 8px;font-family:var(--mono);font-size:.54rem;color:var(--teal)">Instantly API</div>
+                <div style="background:rgba(0,201,167,.12);border:1px solid rgba(0,201,167,.3);border-radius:6px;padding:4px 8px;font-family:var(--mono);font-size:.54rem;color:var(--teal)">Lemlist API</div>
+                <div style="background:rgba(0,201,167,.12);border:1px solid rgba(0,201,167,.3);border-radius:6px;padding:4px 8px;font-family:var(--mono);font-size:.54rem;color:var(--teal)">Master Sheet</div>
+              </div>
+              <div style="display:flex;gap:6px">
+                <div style="background:rgba(0,201,167,.12);border:1px solid rgba(0,201,167,.3);border-radius:6px;padding:4px 8px;font-family:var(--mono);font-size:.54rem;color:var(--teal)">Zapier Events</div>
+                <div style="background:rgba(0,201,167,.12);border:1px solid rgba(0,201,167,.3);border-radius:6px;padding:4px 8px;font-family:var(--mono);font-size:.54rem;color:var(--teal)">Drive Snapshots</div>
+              </div>
+              <div class="flbl">Data sources</div>
+            </div>
+            <div class="sarr"><div class="sarr-l"></div><div class="sarr-t">unified</div></div>
+            <div class="mframe">
+              <div class="aw" style="width:250px;background:var(--bg2)">
+                <div class="wc"><span class="wd r"></span><span class="wd y"></span><span class="wd g"></span><span class="wt">GO Campaign Intelligence</span></div>
+                <div style="padding:10px 12px;background:var(--bg2)">
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:8px">
+                    <div class="kpi up" id="d1k1" style="opacity:0;transition:opacity .4s"><div class="kpi-l">Open Rate</div><div class="kpi-v" style="font-size:.9rem">35.5%</div><div class="kpi-ch">+5.5%</div></div>
+                    <div class="kpi warn" id="d1k2" style="opacity:0;transition:opacity .4s .2s"><div class="kpi-l">Reply Rate</div><div class="kpi-v" style="font-size:.9rem">5.4%</div><div class="kpi-ch">above bench</div></div>
+                    <div class="kpi bad" id="d1k3" style="opacity:0;transition:opacity .4s .4s"><div class="kpi-l">Bounce</div><div class="kpi-v" style="font-size:.9rem">2.6%</div><div class="kpi-ch">1 flagged</div></div>
+                  </div>
+                  <div style="background:var(--sur);border:1px solid var(--bdr);border-radius:6px;padding:6px 10px;font-family:var(--mono);font-size:.58rem;color:var(--mid);opacity:0;transition:opacity .4s .6s" id="d1chat">Claude: Enterprise_UK_Q2 leads with 7.0% reply rate — subject line change Apr 14 drove open rate 38% to 45%</div>
+                </div>
+              </div>
+              <div class="flbl">Live dashboard</div>
+            </div>
+          </div>
+          <div class="anim-actions">
+            <button class="demo-btn" onclick="openModal('modal-dash')">Explore Dashboard</button>
+            <button class="rpl-btn" onclick="replayD1()">replay</button>
+          </div>
+        </div>
+        <button class="ctog" id="tg1" onclick="toggleCase(1)"><span id="tg1-txt">View details</span><span class="ti">▼</span></button>
+        <div class="case-det" id="det1">
+          <div class="cgrid">
+            <div class="col"><div class="col-hd"><span class="dot dp"></span><span class="col-lbl">Problem</span></div><div class="col-txt">Five sheets. Two outreach platforms (Instantly and Lemlist) with separate analytics, each with different campaign types, different UX. Six variables tracked simultaneously: sender health, live performance, A/B results, copy strategy, response quality, suppression. <strong>30 minutes of manual cross-referencing for any single question.</strong> Tables in Sheets made patterns invisible.</div></div>
+            <div class="col"><div class="col-hd"><span class="dot ds"></span><span class="col-lbl">Solution</span></div><div class="col-txt">Multi-page web app built on Google Apps Script. Webhooks pull live stats from both platforms. Drive snapshots preserve completed campaign data before it disappears from the API. A changelog links every strategic change (copy angle, ICP shift) to performance outcomes. Claude API chatbot answers questions from actual data.<div class="chips"><span class="chip">Apps Script</span><span class="chip">Web App</span><span class="chip">Instantly API</span><span class="chip">Lemlist API</span><span class="chip">Webhooks</span><span class="chip">Drive API</span><span class="chip">Claude API</span><span class="chip">Claude MCP</span><span class="chip">Slack API</span><span class="chip">REST APIs</span></div></div></div>
+            <div class="col"><div class="col-hd"><span class="dot di"></span><span class="col-lbl">Impact</span></div><div class="col-txt"><span class="bnum">10 sec</span>Questions that took 30 minutes of cross-referencing now take 10 seconds. Campaign patterns visible at a glance. Strategic changes connected to outcomes. Historical data preserved even after campaigns end and APIs clear.</div></div>
+            <div class="col"><div class="col-hd"><span class="dot dw"></span><span class="col-lbl">Why this approach</span></div><div class="col-txt">The data existed. The problem was access — who could read it, how fast, and in what form. <strong>The dashboard does not create new information. It makes existing information usable.</strong> Webhooks over polling because event-driven is more efficient and accurate. Snapshots because API data disappears when campaigns complete.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 INSTANTLY SUITE -->
+      <div class="case reveal">
+        <div class="case-head">
+          <div>
+            <div class="cn">02 · Real Build · what3words</div>
+            <div class="ct">Instantly Campaign Management Suite</div>
+            <div><span class="ibadge">Hours of weekly manual sender management → one click</span></div>
+          </div>
+          <div class="badges"><span class="badge b-r">Live</span><span class="badge b-t">Instantly API V1/V2</span><span class="badge b-t">Apps Script</span><span class="badge b-t">REST APIs</span><span class="badge b-t">TTL Cache</span></div>
+        </div>
+        <div class="case-anim" data-anim="anim2" title="Hover to replay">
+          <span class="hover-hint">hover to replay</span>
+          <div class="mseq">
+            <div class="mframe">
+              <div class="aw" style="width:210px;background:var(--bg2)">
+                <div class="wc"><span class="wd r"></span><span class="wd y"></span><span class="wd g"></span><span class="wt">Campaign Manager</span></div>
+                <div class="gs-bar"><div class="gs-ic"><svg viewBox="0 0 12 12" fill="white"><rect x="1" y="1" width="4" height="4"/><rect x="7" y="1" width="4" height="4"/><rect x="1" y="7" width="4" height="4"/><rect x="7" y="7" width="4" height="4"/></svg></div><span class="gs-tt">Instantly Tools</span></div>
+                <div style="padding:10px;background:var(--bg2)">
+                  <div style="font-family:var(--mono);font-size:.54rem;color:var(--dim);margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em">Campaign</div>
+                  <div style="font-family:var(--mono);font-size:.68rem;color:var(--teal);background:var(--tdim);border-radius:4px;padding:4px 8px;margin-bottom:8px">Enterprise_UK_Q2</div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:8px">
+                    <div style="background:var(--sur);border:1px solid var(--bdr);border-radius:4px;padding:6px 8px"><div style="font-family:var(--mono);font-size:.52rem;color:var(--dim)">Leads</div><div style="font-family:var(--sans);font-size:.9rem;font-weight:800;color:var(--text)">2,500</div></div>
+                    <div style="background:var(--sur);border:1px solid var(--bdr);border-radius:4px;padding:6px 8px"><div style="font-family:var(--mono);font-size:.52rem;color:var(--dim)">Complete by</div><div style="font-family:var(--sans);font-size:.9rem;font-weight:800;color:var(--text)">Apr 26</div></div>
+                  </div>
+                  <button class="gs-rb" id="btn-assign" onclick="runAssign()" style="width:100%;padding:6px;font-size:.66rem">Calculate &amp; Assign</button>
+                  <div id="assign-status" style="font-family:var(--mono);font-size:.54rem;color:var(--dim);text-align:center;margin-top:4px;height:12px"></div>
+                </div>
+              </div>
+              <div class="flbl">One-click assign</div>
+            </div>
+            <div class="sarr"><div class="sarr-l"></div><div class="sarr-t">API assigns</div></div>
+            <div class="mframe">
+              <div class="aw gs" style="width:210px">
+                <div class="wc"><span class="wd r"></span><span class="wd y"></span><span class="wd g"></span><span class="wt">Sender Assignments Log</span></div>
+                <div class="gs-hr" style="grid-template-columns:20px 82px 64px 36px"><div class="gs-ch"></div><div class="gs-ch">Campaign</div><div class="gs-ch">Sender</div><div class="gs-ch">Cap</div></div>
+                <div style="background:var(--bg2)">
+                  <div class="gs-row" id="asn1" style="grid-template-columns:20px 82px 64px 36px"><div class="gs-rn">1</div><div class="gs-cell ok">Ent_UK_Q2</div><div class="gs-cell" style="font-size:.56rem">alex@out</div><div class="gs-cell ok">30</div></div>
+                  <div class="gs-row" id="asn2" style="grid-template-columns:20px 82px 64px 36px"><div class="gs-rn">2</div><div class="gs-cell ok">Ent_UK_Q2</div><div class="gs-cell" style="font-size:.56rem">maya@out</div><div class="gs-cell ok">30</div></div>
+                  <div class="gs-row" id="asn3" style="grid-template-columns:20px 82px 64px 36px"><div class="gs-rn">3</div><div class="gs-cell ok">Ent_UK_Q2</div><div class="gs-cell" style="font-size:.56rem">sam@out</div><div class="gs-cell warn">15</div></div>
+                </div>
+                <div id="asn-confirm" style="padding:6px 10px;font-family:var(--mono);font-size:.6rem;color:var(--green);background:rgba(57,217,138,.08);border-top:1px solid rgba(57,217,138,.2);display:none">✓ Live in Instantly · 7 senders · est. 7 days</div>
+              </div>
+              <div class="flbl">Assigned and logged</div>
+            </div>
+          </div>
+          <div class="anim-actions">
+            <button class="demo-btn" onclick="openModal('modal-instantly')">Calculator Demo</button>
+            <button class="rpl-btn" onclick="resetAssign()">replay</button>
+          </div>
+        </div>
+        <button class="ctog" id="tg2" onclick="toggleCase(2)"><span id="tg2-txt">View details</span><span class="ti">▼</span></button>
+        <div class="case-det" id="det2">
+          <div class="cgrid">
+            <div class="col"><div class="col-hd"><span class="dot dp"></span><span class="col-lbl">Problem</span></div><div class="col-txt">Hundreds of sender accounts with different daily limits had to be manually assigned to campaigns. Instantly had no bulk action — copy-paste did not work on the platform. You typed each email one by one. <strong>Weekly work. Error-prone. A slow start to every campaign.</strong> No quick answer to "when will this campaign complete?"</div></div>
+            <div class="col"><div class="col-hd"><span class="dot ds"></span><span class="col-lbl">Solution</span></div><div class="col-txt">Full suite connecting to Instantly V1 and V2 APIs. Calculator takes campaign size and target date, figures optimal sender count and distribution, assigns automatically, logs to the master sheet, prevents duplicate assignments across campaigns. Staggered triggers handle hundreds of accounts without hitting execution limits.<div class="chips"><span class="chip">Instantly V1 API</span><span class="chip">Instantly V2 API</span><span class="chip">Apps Script</span><span class="chip">TTL Cache</span><span class="chip">Exponential Backoff</span><span class="chip">PropertiesService</span></div></div></div>
+            <div class="col"><div class="col-hd"><span class="dot di"></span><span class="col-lbl">Impact</span></div><div class="col-txt"><span class="bnum">Auto</span>Campaign planning no longer blocked on account assignment. Full audit log, zero duplicates. And now you can answer "when does this campaign finish?" in two seconds instead of doing the math by hand.</div></div>
+            <div class="col"><div class="col-hd"><span class="dot dw"></span><span class="col-lbl">Why this approach</span></div><div class="col-txt">It is all numbers and logic. Account limits are known, campaign sizes are known, the rest is math. <strong>There is no reason to do this by hand every week.</strong> The calculator also tells you before you start whether you have enough sending capacity to hit the deadline.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 ZAPIER SUITE -->
+      <div class="case reveal">
+        <div class="case-head">
+          <div>
+            <div class="cn">03 · Real Build · what3words</div>
+            <div class="ct">Zapier Data Integrity Suite</div>
+            <div><span class="ibadge">Corrupted response data → trustworthy metrics at the source</span></div>
+          </div>
+          <div class="badges"><span class="badge b-r">Live</span><span class="badge b-t">Zapier</span><span class="badge b-t">Front API</span><span class="badge b-t">Instantly API</span><span class="badge b-t">Google Sheets</span><span class="badge b-t">Slack</span></div>
+        </div>
+        <div class="case-anim" data-anim="anim3" title="Hover to replay">
+          <span class="hover-hint">hover to replay</span>
+          <div class="mseq">
+            <div class="mframe">
+              <div class="fr-win">
+                <div class="fr-side"><div class="fr-sb act"><div class="fr-ico">📥</div><div class="fr-lbl">Inbox</div></div></div>
+                <div class="fr-m">
+                  <div class="fr-top"><span class="fr-inbox">Outreach Inbox</span></div>
+                  <div class="fr-tick" id="ft1"><div class="fr-subj">Out of office reply<span class="ttag b" id="ft1t">Auto</span></div><div class="fr-sub">flagged as lead incorrectly</div></div>
+                  <div class="fr-tick" id="ft2"><div class="fr-subj">Yes, very interested!<span class="ttag f" id="ft2t">Genuine</span></div><div class="fr-sub">real lead · continues sequence</div></div>
+                  <div class="fr-tick" id="ft3"><div class="fr-subj">Mail delivery failed<span class="ttag bug" id="ft3t">5.1.1</span></div><div class="fr-sub">sender health risk logged</div></div>
+                </div>
+              </div>
+              <div class="flbl">Front tagging</div>
+            </div>
+            <div class="sarr"><div class="sarr-l"></div><div class="sarr-t">Zapier bridge</div></div>
+            <div class="mframe">
+              <div class="slack" style="width:210px">
+                <div class="slk-s">
+                  <div class="slk-ws">what3words</div>
+                  <div class="slk-ch">outreach</div>
+                  <div class="slk-ch act">data-integrity<span class="slk-un">2</span></div>
+                </div>
+                <div class="slk-m">
+                  <div class="slk-hd"><span class="slk-cn">data-integrity</span></div>
+                  <div class="slk-msgs">
+                    <div class="slk-msg" id="slk3m1">
+                      <div class="slk-av" style="background:var(--teal)">Z</div>
+                      <div><div class="slk-meta"><span class="nm">Integrity Bot</span><span class="tm">now</span></div>
+                        <div class="slk-ok"><div class="slk-ot">Status corrected · auto-reply removed</div><div class="slk-ob">Genuine lead continues. Auto-reply stopped.</div></div>
+                      </div>
+                    </div>
+                    <div class="slk-msg" id="slk3m2">
+                      <div class="slk-av" style="background:var(--red)">!</div>
+                      <div><div class="slk-meta"><span class="nm">Health Bot</span><span class="tm">now</span></div>
+                        <div class="slk-alert"><div class="slk-at">5.1.1 spike · sender01@out.io</div><div class="slk-ab">Undeliverable rate up. Health at risk. Logged to sheet.</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flbl">Corrected + alerted</div>
+            </div>
+          </div>
+          <div class="anim-actions"><button class="rpl-btn" onclick="replay3()">replay</button></div>
+        </div>
+        <button class="ctog" id="tg3" onclick="toggleCase(3)"><span id="tg3-txt">View details</span><span class="ti">▼</span></button>
+        <div class="case-det" id="det3">
+          <div class="cgrid">
+            <div class="col"><div class="col-hd"><span class="dot dp"></span><span class="col-lbl">Problem</span></div><div class="col-txt">Sending thousands of emails a day means a lot comes back — autoreplies, out-of-office, delivery failures. Outreach platforms use keyword matching, so <strong>autoresponders were flagged as interested leads.</strong> Data corrupted at the source. Undeliverables were quietly killing sender health scores without anyone noticing.</div></div>
+            <div class="col"><div class="col-hd"><span class="dot ds"></span><span class="col-lbl">Solution</span></div><div class="col-txt">Three connected Zapier automations: Front email tags sync to Instantly to correct lead status in real time. Undeliverable emails extracted and logged with error codes (5.1.1 etc.) per sender account. Inbound lead sources cross-checked and pinged to Slack. All feed into cost analysis and the intelligence dashboard.<div class="chips"><span class="chip">Zapier</span><span class="chip">Front API</span><span class="chip">Instantly API</span><span class="chip">Google Sheets</span><span class="chip">Slack API</span><span class="chip">Webhook triggers</span></div></div></div>
+            <div class="col"><div class="col-hd"><span class="dot di"></span><span class="col-lbl">Impact</span></div><div class="col-txt"><span class="bnum">Clean data</span>Response data is now accurate. Undeliverability tracked by error code. Sender health visible before it becomes a deliverability problem. Cost analysis based on real conversions, not false positives.</div></div>
+            <div class="col"><div class="col-hd"><span class="dot dw"></span><span class="col-lbl">Why this approach</span></div><div class="col-txt">Manual email review was already happening. The data existed. <strong>Connecting Front to Instantly via Zapier meant work already being done became the automation trigger.</strong> No new work required — just routing existing actions correctly.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 SALESFORCE REPORT -->
+      <div class="case reveal">
+        <div class="case-head">
+          <div>
+            <div class="cn">04 · Real Build · what3words</div>
+            <div class="ct">Salesforce Subscription Weekly Report</div>
+            <div><span class="ibadge">Manual weekly pull across 3 platforms → zero human input</span></div>
+          </div>
+          <div class="badges"><span class="badge b-r">Live</span><span class="badge b-t">Salesforce</span><span class="badge b-t">Google Sheets</span><span class="badge b-t">LookerStudio</span><span class="badge b-t">Slack API</span></div>
+        </div>
+        <div class="case-anim" data-anim="anim4" title="Hover to replay" style="overflow-x:auto;overflow-y:visible;min-height:220px">
+          <span class="hover-hint">hover to replay</span>
+          <div class="mseq" style="min-width:620px;padding:0 4px">
+            <div class="mframe">
+              <div class="aw" style="width:175px;background:#0f1825">
+                <div class="sf-hd" style="padding:6px 10px"><span class="sf-logo" style="font-size:.65rem">Sales<span>force</span></span></div>
+                <div class="sf-nav" style="padding:3px 10px"><span class="sf-ni act" style="font-size:.54rem">Subscriptions</span><span class="sf-ni" style="font-size:.54rem">Accounts</span></div>
+                <div class="sf-body" style="padding:8px 10px">
+                  <div class="sf-st">Plan Journeys · This Week</div>
+                  <div class="sf-rec show"><div><div class="sf-rn">Acme Corp</div><div class="sf-rs">Starter → Pro</div></div><span class="sf-badge up">↑</span></div>
+                  <div class="sf-rec show"><div><div class="sf-rn">Build Co</div><div class="sf-rs">Pro → Starter</div></div><span class="sf-badge down">↓</span></div>
+                  <div class="sf-rec show"><div><div class="sf-rn">ScaleFast</div><div class="sf-rs">churned</div></div><span class="sf-badge open">✕</span></div>
+                </div>
+              </div>
+              <div class="flbl">Salesforce data</div>
+            </div>
+            <div class="sarr"><div class="sarr-l"></div><div class="sarr-t">connector</div></div>
+            <div class="mframe">
+              <div class="aw gs" style="width:210px">
+                <div class="wc"><span class="wd r"></span><span class="wd y"></span><span class="wd g"></span><span class="wt">Weekly Report</span></div>
+                <div class="gs-bar"><div class="gs-ic"><svg viewBox="0 0 12 12" fill="white"><rect x="1" y="1" width="4" height="4"/><rect x="7" y="1" width="4" height="4"/><rect x="1" y="7" width="4" height="4"/><rect x="7" y="7" width="4" height="4"/></svg></div><span class="gs-tt" style="color:var(--green)">Auto-generated</span></div>
+                <div class="gs-hr" style="grid-template-columns:18px 72px 50px 50px"><div class="gs-ch"></div><div class="gs-ch">Metric</div><div class="gs-ch">Value</div><div class="gs-ch">Change</div></div>
+                <div style="background:var(--bg2)">
+                  <div class="gs-row" id="g4r1" style="grid-template-columns:18px 72px 50px 50px"><div class="gs-rn">1</div><div class="gs-cell" style="color:var(--text);font-weight:600">Upgrades</div><div class="gs-cell ok">12</div><div class="gs-cell ok">+3</div></div>
+                  <div class="gs-row" id="g4r2" style="grid-template-columns:18px 72px 50px 50px"><div class="gs-rn">2</div><div class="gs-cell" style="color:var(--text);font-weight:600">Downgrades</div><div class="gs-cell warn">4</div><div class="gs-cell warn">+1</div></div>
+                  <div class="gs-row" id="g4r3" style="grid-template-columns:18px 72px 50px 50px"><div class="gs-rn">3</div><div class="gs-cell" style="color:var(--text);font-weight:600">Churn</div><div class="gs-cell bad">2</div><div class="gs-cell bad">+2</div></div>
+                  <div class="gs-row" id="g4r4" style="grid-template-columns:18px 72px 50px 50px"><div class="gs-rn">4</div><div class="gs-cell" style="color:var(--text);font-weight:600">Net MRR</div><div class="gs-cell ok">+$840</div><div class="gs-cell ok">↑</div></div>
+                </div>
+              </div>
+              <div class="flbl">Auto-populates</div>
+            </div>
+            <div class="sarr"><div class="sarr-l"></div><div class="sarr-t">Mon 9am</div></div>
+            <div class="mframe">
+              <div class="slack" style="width:172px">
+                <div class="slk-s" style="width:100px">
+                  <div class="slk-ws">what3words</div>
+                  <div class="slk-ch">general</div>
+                  <div class="slk-ch act">weekly-report<span class="slk-un">1</span></div>
+                </div>
+                <div class="slk-m">
+                  <div class="slk-hd"><span class="slk-cn">weekly-report</span></div>
+                  <div class="slk-msgs">
+                    <div class="slk-msg" id="slk4m1">
+                      <div class="slk-av" style="background:#0F9D58;font-size:.55rem">G</div>
+                      <div><div class="slk-meta"><span class="nm">Report Bot</span><span class="tm">Mon 9am</span></div>
+                        <div class="slk-ok"><div class="slk-ot">Week 16 Ready</div><div class="slk-ob">12 up · 4 down · 2 churn · +$840</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flbl">Posted to Slack</div>
+            </div>
+          </div>
+          <div class="anim-actions"><button class="rpl-btn" onclick="replay4()">replay</button></div>
+        </div>
+        <button class="ctog" id="tg4" onclick="toggleCase(4)"><span id="tg4-txt">View details</span><span class="ti">▼</span></button>
+        <div class="case-det" id="det4">
+          <div class="cgrid">
+            <div class="col"><div class="col-hd"><span class="dot dp"></span><span class="col-lbl">Problem</span></div><div class="col-txt">Weekly subscription health report required manually cross-referencing Salesforce, LookerStudio, and Slack. <strong>Simple data, three places, one tedious hour every week.</strong> The report was already slightly outdated by the time it landed in Slack.</div></div>
+            <div class="col"><div class="col-hd"><span class="dot ds"></span><span class="col-lbl">Solution</span></div><div class="col-txt">Connected Google Sheets to Salesforce via the native connector. Custom report captures plan journey data — upgrades, downgrades, churn. Sheet auto-populates on schedule, then posts a formatted summary directly to the #weekly-report Slack channel every Monday morning.<div class="chips"><span class="chip">Salesforce</span><span class="chip">Sheets Connector</span><span class="chip">Google Sheets</span><span class="chip">Slack API</span><span class="chip">Apps Script</span></div></div></div>
+            <div class="col"><div class="col-hd"><span class="dot di"></span><span class="col-lbl">Impact</span></div><div class="col-txt"><span class="bnum">0 hrs</span>Zero manual input. Always accurate, always on time. Report is in Slack before anyone has opened their laptop on Monday. Time saved goes to reading the numbers, not compiling them.</div></div>
+            <div class="col"><div class="col-hd"><span class="dot dw"></span><span class="col-lbl">Why this approach</span></div><div class="col-txt">Reports are just data you already have, presented differently. <strong>If you are documenting correctly, automation should always be possible.</strong> New metric = one extra field in the Salesforce source report.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 LEAD FILE CLEANER -->
+      <div class="case reveal">
+        <div class="case-head">
+          <div>
+            <div class="cn">05 · Real Build · what3words</div>
+            <div class="ct">Lead File Cleaner and Suppression System</div>
+            <div><span class="ibadge">30 minutes per file → seconds. Zero manual steps.</span></div>
+          </div>
+          <div class="badges"><span class="badge b-r">Live</span><span class="badge b-t">Apps Script</span><span class="badge b-t">Google Sheets</span><span class="badge b-t">Outscraper</span></div>
+        </div>
+        <div class="case-anim" data-anim="anim5" title="Hover to replay">
+          <span class="hover-hint">hover to replay</span>
+          <div class="mseq">
+            <div class="mframe">
+              <div class="aw gs">
+                <div class="wc"><span class="wd r"></span><span class="wd y"></span><span class="wd g"></span><span class="wt">leads_raw.xlsx</span></div>
+                <div class="gs-bar"><div class="gs-ic"><svg viewBox="0 0 12 12" fill="white"><rect x="1" y="1" width="4" height="4"/><rect x="7" y="1" width="4" height="4"/><rect x="1" y="7" width="4" height="4"/><rect x="7" y="7" width="4" height="4"/></svg></div><span class="gs-tt">Raw Export</span><button class="gs-rb" id="clean-btn" onclick="runCleaner()">Clean File</button></div>
+                <div class="gs-hr" style="grid-template-columns:18px 76px 62px 46px"><div class="gs-ch"></div><div class="gs-ch">Email</div><div class="gs-ch">Company</div><div class="gs-ch">Status</div></div>
+                <div style="background:var(--bg2)">
+                  <div class="gs-row show" style="grid-template-columns:18px 76px 62px 46px"><div class="gs-rn">1</div><div class="gs-cell bad">not@valid</div><div class="gs-cell">Acme</div><div class="gs-cell bad">err</div></div>
+                  <div class="gs-row show" style="grid-template-columns:18px 76px 62px 46px"><div class="gs-rn">2</div><div class="gs-cell warn">j@b, j@b</div><div class="gs-cell">Build</div><div class="gs-cell warn">dup</div></div>
+                  <div class="gs-row show" style="grid-template-columns:18px 76px 62px 46px"><div class="gs-rn">3</div><div class="gs-cell ok">ceo@sc.io</div><div class="gs-cell ok">Scale</div><div class="gs-cell okb">ok</div></div>
+                  <div class="gs-row show" style="grid-template-columns:18px 76px 62px 46px"><div class="gs-rn">4</div><div class="gs-cell bad"></div><div class="gs-cell bad">Empty Co</div><div class="gs-cell bad">miss</div></div>
+                </div>
+              </div>
+              <div class="flbl">Raw (4 rows, 3 issues)</div>
+            </div>
+            <div class="sarr"><div class="sarr-l"></div><div class="sarr-t">one click</div></div>
+            <div class="mframe" id="clean-result-frame" style="opacity:0;transition:opacity .4s">
+              <div class="aw gs">
+                <div class="wc"><span class="wd r"></span><span class="wd y"></span><span class="wd g"></span><span class="wt">leads_clean.xlsx</span></div>
+                <div class="gs-bar"><div class="gs-ic"><svg viewBox="0 0 12 12" fill="white"><rect x="1" y="1" width="4" height="4"/><rect x="7" y="1" width="4" height="4"/><rect x="1" y="7" width="4" height="4"/><rect x="7" y="7" width="4" height="4"/></svg></div><span class="gs-tt" style="color:var(--green)">Clean Output</span><span class="gs-rb done">Done</span></div>
+                <div class="gs-hr" style="grid-template-columns:18px 86px 66px 42px"><div class="gs-ch"></div><div class="gs-ch">Email</div><div class="gs-ch">Company</div><div class="gs-ch">Ready</div></div>
+                <div style="background:var(--bg2)">
+                  <div class="gs-row" id="cr1" style="grid-template-columns:18px 86px 66px 42px"><div class="gs-rn">1</div><div class="gs-cell ok">ceo@sc.io</div><div class="gs-cell ok">Scale</div><div class="gs-cell okb">✓</div></div>
+                  <div class="gs-row" id="cr2" style="grid-template-columns:18px 86px 66px 42px"><div class="gs-rn">—</div><div class="gs-cell" style="color:var(--dim);font-style:italic;font-size:.56rem">invalid email removed</div><div class="gs-cell"></div><div class="gs-cell"></div></div>
+                  <div class="gs-row" id="cr3" style="grid-template-columns:18px 86px 66px 42px"><div class="gs-rn">—</div><div class="gs-cell" style="color:var(--dim);font-style:italic;font-size:.56rem">duplicate removed</div><div class="gs-cell"></div><div class="gs-cell"></div></div>
+                  <div class="gs-row" id="cr4" style="grid-template-columns:18px 86px 66px 42px"><div class="gs-rn">—</div><div class="gs-cell" style="color:var(--dim);font-style:italic;font-size:.56rem">missing email removed</div><div class="gs-cell"></div><div class="gs-cell"></div></div>
+                </div>
+              </div>
+              <div class="flbl">1 valid · 3 removed</div>
+            </div>
+          </div>
+          <div class="anim-actions">
+            <button class="demo-btn" onclick="openModal('modal-cleaner')">Full Demo</button>
+            <button class="rpl-btn" onclick="resetCleaner()">replay</button>
+          </div>
+        </div>
+        <button class="ctog" id="tg5" onclick="toggleCase(5)"><span id="tg5-txt">View details</span><span class="ti">▼</span></button>
+        <div class="case-det" id="det5">
+          <div class="cgrid">
+            <div class="col"><div class="col-hd"><span class="dot dp"></span><span class="col-lbl">Problem</span></div><div class="col-txt">Lead files from Outscraper arrived messy — bad emails, duplicates, wrong formats, multiple contacts under one company. <strong>Cleaning one file took 30 minutes.</strong> We had hundreds waiting. A quiet bottleneck eating time nobody had named.</div></div>
+            <div class="col"><div class="col-hd"><span class="dot ds"></span><span class="col-lbl">Solution</span></div><div class="col-txt">Google Apps Script with a button embedded directly in the Sheet. Validates every email, removes duplicates, formats to one contact per row, cross-references suppression lists, outputs a file ready to load into Instantly or enrichment tools.<div class="chips"><span class="chip">Apps Script</span><span class="chip">Google Sheets</span><span class="chip">Outscraper</span><span class="chip">Email validation</span></div></div></div>
+            <div class="col"><div class="col-hd"><span class="dot di"></span><span class="col-lbl">Impact</span></div><div class="col-txt"><span class="bnum">seconds</span>Down from 30 minutes per file. Works at any volume. Nobody touches cleanup manually anymore. Saves enrichment credits by removing bad data before it hits paid APIs.</div></div>
+            <div class="col"><div class="col-hd"><span class="dot dw"></span><span class="col-lbl">Why this approach</span></div><div class="col-txt">Apps Script is native to Google Sheets — zero setup friction. A button means anyone on the team can run it. <strong>One script handles multiple file formats without rebuilding anything.</strong> Non-technical teammates never need to touch the code.</div></div>
+          </div>
+          <div class="lbox show"><div class="lbox-l">The real insight</div><div class="lbox-t">Most operational bottlenecks are not complex. They are undocumented manual steps that nobody has questioned yet. The skill is not the code — it is recognising that the 30-minute task should not exist in the first place.</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="csect">
+    <div class="ci">
+      <h2 class="c-ti">Interested?</h2>
+      <p class="c-sub">Open to globally remote ops, automation, and product roles. No visa or relocation needed.</p>
+      <div class="c-lnks">
+        <a href="mailto:anuerdene7@gmail.com" class="clink">anuerdene7@gmail.com</a>
+        <a href="https://linkedin.com/in/anu-ujin-erdenebaatar" target="_blank" class="clink">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  <footer>built by anu-ujin erdenebaatar · ulaanbaatar, mongolia · 2026</footer>
+</div>
+
+<!-- CONCEPTS -->
+<div id="page-concepts" class="page">
+  <div class="sec">
+    <div class="sec-ey">system design · concept builds</div>
+    <div class="sec-ti">Concept Automations</div>
+    <div class="sec-de">These are not gaps in experience — they are patterns I have seen repeatedly and know how to build. Simple in concept, significant in impact.</div>
+    <div class="cases">
+
+      <!-- C1 KB CHATBOT (IN PROGRESS - first) -->
+      <div class="case reveal">
+        <div class="case-head">
+          <div>
+            <div class="cn">In Progress · Internal Ops · what3words</div>
+            <div class="ct">Tech Knowledge Base Chatbot</div>
+            <div><span class="ibadge">Senior team answers same questions repeatedly → self-serve in seconds</span></div>
+          </div>
+          <div class="badges"><span class="badge b-p">In Design</span><span class="badge b-t">Claude API</span><span class="badge b-t">Notion</span><span class="badge b-t">Slack</span><span class="badge b-t">Front</span><span class="badge b-t">MCP</span></div>
+        </div>
+        <div class="case-anim" style="cursor:default">
+          <div style="display:flex;align-items:center;justify-content:center;gap:20px;width:100%">
+            <div style="background:var(--sur);border:1px solid var(--bdr);border-radius:10px;padding:14px;width:200px">
+              <div style="font-family:var(--mono);font-size:.62rem;color:var(--teal);margin-bottom:10px">Support agent asks</div>
+              <div style="background:var(--tdim);border-radius:6px;padding:6px 8px;font-family:var(--mono);font-size:.6rem;color:var(--teal);margin-bottom:8px">"API rate limit on free tier?"</div>
+              <div style="background:var(--bg2);border-radius:6px;padding:6px 8px;font-size:.65rem;color:var(--mid);line-height:1.6">1 req/sec free, 10 req/sec Pro. See <span style="color:var(--blue)">Notion: API Guide</span> for full breakdown with examples.</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:center">
+              <div style="font-family:var(--mono);font-size:.56rem;color:var(--dim);margin-bottom:4px">pulls from</div>
+              <div style="background:var(--sur);border:1px solid var(--bdr);border-radius:6px;padding:5px 10px;font-family:var(--mono);font-size:.58rem;color:var(--mid)">📋 Notion KB</div>
+              <div style="background:var(--sur);border:1px solid var(--bdr);border-radius:6px;padding:5px 10px;font-family:var(--mono);font-size:.58rem;color:var(--mid)">💬 Slack history</div>
+              <div style="background:var(--sur);border:1px solid var(--bdr);border-radius:6px;padding:5px 10px;font-family:var(--mono);font-size:.58rem;color:var(--teal)">🤖 Claude API</div>
+            </div>
+          </div>
+          <div class="anim-actions"><button class="demo-btn" onclick="openModal('modal-kb')">Try Demo</button></div>
+        </div>
+        <button class="ctog" onclick="toggleCaseC('C1')"><span>View details</span><span class="ti">▼</span></button>
+        <div class="case-det" id="detC1">
+          <div class="cgrid">
+            <div class="col"><div class="col-hd"><span class="dot dp"></span><span class="col-lbl">Problem</span></div><div class="col-txt">Support teams get frequent technical queries. Answers exist in Notion docs and old Slack threads but finding them requires knowing where to look. Ends in someone pinging a senior team member for the same question answered last month.</div></div>
+            <div class="col"><div class="col-hd"><span class="dot ds"></span><span class="col-lbl">Solution</span></div><div class="col-txt">Claude-powered chatbot embedded in Front. Connects to the Notion knowledge base and Slack history. Returns answers with source links so agents can verify.<div class="chips"><span class="chip">Claude API</span><span class="chip">Notion API</span><span class="chip">Slack API</span><span class="chip">Front</span><span class="chip">MCP</span></div></div></div>
+            <div class="col"><div class="col-hd"><span class="dot di"></span><span class="col-lbl">Expected Impact</span></div><div class="col-txt"><span class="bnum">Self-serve</span>Agents get instant sourced answers. Senior team stops answering repeat questions. Knowledge stays accessible as the product evolves.</div></div>
+            <div class="col"><div class="col-hd"><span class="dot dw"></span><span class="col-lbl">Status</span></div><div class="col-txt">Architecture scoped. Pending Claude API access approval internally. Notion and Slack connections mapped. <strong>Build timeline: a few focused days once approved.</strong></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C2 TICKET ROUTING -->
+      <div class="case reveal">
+        <div class="case-head">
+          <div>
+            <div class="cn">Concept · Customer Ops</div>
+            <div class="ct">Support Ticket Auto-Categorisation and Routing</div>
+            <div><span class="ibadge">Manual triage → auto-routed in under 30 seconds</span></div>
+          </div>
+          <div class="badges"><span class="badge b-c">Concept</span><span class="badge b-t">Make.com</span><span class="badge b-t">Front</span><span class="badge b-t">Slack</span></div>
+        </div>
+        <div class="case-anim" style="flex-direction:column;gap:14px;cursor:default">
+          <div style="font-family:var(--mono);font-size:.62rem;color:var(--mid);margin-bottom:4px">Click a ticket type to see it route:</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+            <button onclick="routeTicket('billing')" style="background:rgba(245,166,35,.12);border:1px solid rgba(245,166,35,.3);color:var(--amber);font-family:var(--mono);font-size:.68rem;padding:6px 14px;border-radius:6px;cursor:pointer">💳 Billing issue</button>
+            <button onclick="routeTicket('bug')" style="background:rgba(255,107,138,.12);border:1px solid rgba(255,107,138,.3);color:var(--red);font-family:var(--mono);font-size:.68rem;padding:6px 14px;border-radius:6px;cursor:pointer">🐛 Bug report</button>
+            <button onclick="routeTicket('sales')" style="background:rgba(57,217,138,.12);border:1px solid rgba(57,217,138,.3);color:var(--green);font-family:var(--mono);font-size:.68rem;padding:6px 14px;border-radius:6px;cursor:pointer">💰 Upgrade request</button>
+            <button onclick="routeTicket('tech')" style="background:rgba(77,166,255,.12);border:1px solid rgba(77,166,255,.3);color:var(--blue);font-family:var(--mono);font-size:.68rem;padding:6px 14px;border-radius:6px;cursor:pointer">🔧 Technical query</button>
+          </div>
+          <div id="route-result" style="display:none;background:var(--sur);border:1px solid var(--bdr);border-radius:8px;padding:12px 16px;font-family:var(--mono);font-size:.7rem;color:var(--mid);max-width:380px;text-align:center;transition:all .3s"></div>
+        </div>
+        <button class="ctog" onclick="toggleCaseC('C2')"><span>View details</span><span class="ti">▼</span></button>
+        <div class="case-det" id="detC2">
+          <div class="cgrid">
+            <div class="col"><div class="col-hd"><span class="dot dp"></span><span class="col-lbl">Problem</span></div><div class="col-txt">Support teams spend meaningful time every day just reading and forwarding tickets to the right person. <strong>Every minute on routing is a minute not spent resolving.</strong></div></div>
+            <div class="col"><div class="col-hd"><span class="dot ds"></span><span class="col-lbl">Solution</span></div><div class="col-txt">Make.com watches Front for new tickets, reads subject and body, categorises by type, assigns to the correct team, tags in Front, pings the right Slack channel — before a human opens the inbox.<div class="chips"><span class="chip">Make.com</span><span class="chip">Front API</span><span class="chip">Slack</span></div></div></div>
+            <div class="col"><div class="col-hd"><span class="dot di"></span><span class="col-lbl">Projected Impact</span></div><div class="col-txt"><span class="bnum">&lt;30s</span>From arrival to correct team assignment. SLA clock starts earlier. Focus on resolution, not triage.</div></div>
+            <div class="col"><div class="col-hd"><span class="dot dw"></span><span class="col-lbl">Scalable Because</span></div><div class="col-txt">New category = one new Make.com branch. <strong>Routing logic lives in one auditable place.</strong> Works for any team using Front as their inbox.</div></div>
+          </div>
+          <div class="c-note">Concept system design. Pattern derived from operational experience. Ready to build.</div>
+        </div>
+      </div>
+
+      <!-- C3 ONBOARDING -->
+      <div class="case reveal">
+        <div class="case-head">
+          <div>
+            <div class="cn">Concept · Revenue Ops</div>
+            <div class="ct">Signed Contract → Automated Customer Onboarding</div>
+            <div><span class="ibadge">Manual onboarding setup → complete in under 5 minutes</span></div>
+          </div>
+          <div class="badges"><span class="badge b-c">Concept</span><span class="badge b-t">Zapier</span><span class="badge b-t">Notion</span><span class="badge b-t">Salesforce</span></div>
+        </div>
+        <div class="case-anim" data-anim="animC3" title="Hover to replay" style="cursor:pointer">
+          <span class="hover-hint">hover to replay</span>
+          <div class="mseq">
+            <div class="mframe">
+              <div class="aw" style="width:170px;background:#0f1e32">
+                <div class="wc"><span class="wd r"></span><span class="wd y"></span><span class="wd g"></span><span class="wt">DocuSign</span></div>
+                <div style="padding:12px">
+                  <div style="font-size:.63rem;color:var(--mid);margin-bottom:8px">Acme Corp · MSA</div>
+                  <div id="sig5" style="height:28px;border:1px dashed var(--bdr);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.58rem;color:var(--dim);opacity:0;transition:opacity .4s">awaiting...</div>
+                  <div id="signed5" style="margin-top:6px;background:rgba(57,217,138,.1);border:1px solid var(--green);border-radius:4px;padding:5px 8px;font-family:var(--mono);font-size:.58rem;color:var(--green);opacity:0;transition:opacity .4s">✓ Signed · webhook fired</div>
+                </div>
+              </div>
+              <div class="flbl">Contract signed</div>
+            </div>
+            <div class="sarr"><div class="sarr-l"></div><div class="sarr-t">Zapier</div></div>
+            <div class="mframe">
+              <div class="aw n-win">
+                <div class="n-hd"><span style="font-size:13px">📋</span><span class="n-tt">Acme Corp — Onboarding</span></div>
+                <div class="n-body">
+                  <div class="n-h1" id="n5h1">🚀 Acme Corp</div>
+                  <div class="n-prop" id="n5p1"><span class="n-lbl">Status</span><span class="n-chip g">Active</span></div>
+                  <div class="n-prop" id="n5p2"><span class="n-lbl">AM</span><span class="n-val">Sarah K.</span></div>
+                  <div class="n-prop" id="n5p3"><span class="n-lbl">Plan</span><span class="n-chip">Pro</span></div>
+                  <hr class="n-div" id="n5d">
+                  <div class="n-txt" id="n5b">✅ Welcome email sent<br>✅ Kickoff scheduled<br>⬜ Day 7 check-in</div>
+                </div>
+              </div>
+              <div class="flbl">Workspace created</div>
+            </div>
+          </div>
+          <div class="anim-actions"><button class="rpl-btn" onclick="replayC3()">replay</button></div>
+        </div>
+        <button class="ctog" onclick="toggleCaseC('C3')"><span>View details</span><span class="ti">▼</span></button>
+        <div class="case-det" id="detC3">
+          <div class="cgrid">
+            <div class="col"><div class="col-hd"><span class="dot dp"></span><span class="col-lbl">Problem</span></div><div class="col-txt">When a customer signs, teams manually send welcome emails, create Notion workspaces, assign AMs, log in Salesforce. <strong>Steps get missed. Quality depends on who is working that day.</strong></div></div>
+            <div class="col"><div class="col-hd"><span class="dot ds"></span><span class="col-lbl">Solution</span></div><div class="col-txt">DocuSign webhook triggers Zapier. Notion workspace created from template. Welcome email sent. Salesforce updated. Slack ping to the account team — before anyone opens their inbox.<div class="chips"><span class="chip">Zapier</span><span class="chip">Notion</span><span class="chip">Salesforce</span><span class="chip">Slack</span></div></div></div>
+            <div class="col"><div class="col-hd"><span class="dot di"></span><span class="col-lbl">Projected Impact</span></div><div class="col-txt"><span class="bnum">&lt;5 min</span>Signature to fully set-up. Every customer gets the same quality — not dependent on headcount or who sees the notification first.</div></div>
+            <div class="col"><div class="col-hd"><span class="dot dw"></span><span class="col-lbl">Scalable Because</span></div><div class="col-txt">1 or 100 customers per week — same flow. New step = one new Zapier action. <strong>Ops quality stops being headcount-dependent.</strong></div></div>
+          </div>
+          <div class="c-note">Concept system design. Ready to build with access to the relevant tools.</div>
+        </div>
+      </div>
+
+      <!-- C4 PAYMENT FAILURE -->
+      <div class="case reveal">
+        <div class="case-head">
+          <div>
+            <div class="cn">Concept · Revenue Ops</div>
+            <div class="ct">Payment Failed → Team Alerted → Recovery Triggered</div>
+            <div><span class="ibadge">Silent failure → alerted and actioned in under 60 seconds</span></div>
+          </div>
+          <div class="badges"><span class="badge b-c">Concept</span><span class="badge b-t">Stripe</span><span class="badge b-t">Make.com</span><span class="badge b-t">Slack</span></div>
+        </div>
+        <div class="case-anim" style="cursor:default">
+          <div class="mseq">
+            <div class="mframe">
+              <div class="str-win">
+                <div class="str-hd"><span class="str-logo">str<em>i</em>pe</span><span class="str-mode">TEST</span></div>
+                <div class="str-body">
+                  <div class="str-card"><div class="str-chip"></div><div class="str-num">•••• •••• •••• 4242</div><div class="str-ci"><span class="str-cn">ACME CORP</span><span class="str-ce">12/26</span></div></div>
+                  <div class="str-al">Amount due</div>
+                  <div class="str-am">$299.00 / mo</div>
+                  <button class="str-btn ready" id="stripe-btn" onclick="runC4()">Pay $299.00</button>
+                  <div class="str-st" id="stripe-status"></div>
+                </div>
+              </div>
+              <div class="flbl">Payment attempted</div>
+            </div>
+            <div class="sarr"><div class="sarr-l"></div><div class="sarr-t">Webhook · Make</div></div>
+            <div class="mframe">
+              <div class="slack" style="width:206px">
+                <div class="slk-s">
+                  <div class="slk-ws">Product Inc</div>
+                  <div class="slk-ch act">billing-alerts<span class="slk-un">1</span></div>
+                </div>
+                <div class="slk-m">
+                  <div class="slk-hd"><span class="slk-cn">billing-alerts</span></div>
+                  <div class="slk-msgs">
+                    <div class="slk-msg" id="slk6m1">
+                      <div class="slk-av" style="background:#E01E5A">💳</div>
+                      <div><div class="slk-meta"><span class="nm">Stripe Bot</span><span class="tm">now</span></div>
+                        <div class="slk-alert"><div class="slk-at">Payment Failed · Acme Corp</div><div class="slk-ab">$299/mo · card_declined<br><span class="mn">@Sarah</span> notified · Recovery sent</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flbl">Team alerted instantly</div>
+            </div>
+          </div>
+          <div class="anim-actions"><button class="rpl-btn" onclick="replayC4()">replay</button></div>
+        </div>
+        <button class="ctog" onclick="toggleCaseC('C4')"><span>View details</span><span class="ti">▼</span></button>
+        <div class="case-det" id="detC4">
+          <div class="cgrid">
+            <div class="col"><div class="col-hd"><span class="dot dp"></span><span class="col-lbl">Problem</span></div><div class="col-txt">Payment failures go unnoticed until a customer churns or reaches out angry. <strong>Recovery is manual and late.</strong> Revenue leaks silently.</div></div>
+            <div class="col"><div class="col-hd"><span class="dot ds"></span><span class="col-lbl">Solution</span></div><div class="col-txt">Stripe webhook fires on failed charge. Make.com catches it, pings the billing channel with customer details and error code, notifies the account owner, triggers a personalised recovery email automatically.<div class="chips"><span class="chip">Stripe Webhooks</span><span class="chip">Make.com</span><span class="chip">Slack</span><span class="chip">Email</span></div></div></div>
+            <div class="col"><div class="col-hd"><span class="dot di"></span><span class="col-lbl">Projected Impact</span></div><div class="col-txt"><span class="bnum">&lt;60s</span>Failed charge to team alerted and recovery email sent. No revenue leak goes unaddressed.</div></div>
+            <div class="col"><div class="col-hd"><span class="dot dw"></span><span class="col-lbl">Scalable Because</span></div><div class="col-txt">Every failure type gets its own response. <strong>Works for any Stripe-based SaaS product</strong> with minimal changes.</div></div>
+          </div>
+          <div class="c-note">Concept system design. Logic is straightforward — Stripe fires the webhook, the rest is routing and notifications.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <footer>built by anu-ujin erdenebaatar · ulaanbaatar, mongolia · 2026</footer>
+</div>
+
+<!-- PERSONAL -->
+<div id="page-personal" class="page">
+  <div class="sec">
+    <div class="sec-ey">personal builds · side projects</div>
+    <div class="sec-ti">Personal Projects</div>
+    <div class="sec-de">Built for fun, for learning, and occasionally as gifts. These exist because I enjoy building things — not because anyone asked me to.</div>
+    <div class="pgrid">
+      <div class="pcard">
+        <div class="pcard-h"><div class="pcard-ico">♟️</div><div class="badges"><span class="badge b-r">v1 playable</span><span class="badge b-p">v2 in progress</span></div></div>
+        <div class="pcard-b">
+          <div class="pcard-ti">Anime and WWE Battle Chess</div>
+          <div class="pcard-de">A fully functional chess game with anime and wrestling universes — One Piece, Dragon Ball, Bleach, Naruto, WWE. Built as a gift. V1 has a working chess engine with minimax AI, three difficulty levels, castling, en passant, and pawn promotion. V2 has canvas-rendered character portraits and physics animations.</div>
+          <div class="chips" style="margin-bottom:14px"><span class="chip">Vanilla JS</span><span class="chip">Canvas API</span><span class="chip">Minimax AI</span><span class="chip">Alpha-Beta Pruning</span></div>
+          <button class="btn btn-p" style="font-size:.72rem;padding:8px 16px" onclick="openModal('chess-modal')">Play v1</button>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-h"><div class="pcard-ico">🃏</div><div class="badges"><span class="badge" style="background:rgba(77,166,255,.12);color:var(--blue)">planned</span></div></div>
+        <div class="pcard-b">
+          <div class="pcard-ti">Tarot Companion App</div>
+          <div class="pcard-de">An intuition-building tarot tool focused on learning interpretation rather than quiz mechanics. Planned to include a spread library, life-area-specific card meanings, and scenario-based practice — for people who want to actually understand the cards, not just get a reading.</div>
+          <div class="chips" style="margin-bottom:14px"><span class="chip">JavaScript</span><span class="chip">Claude API</span></div>
+          <span style="font-family:var(--mono);font-size:.7rem;color:var(--dim)">Coming soon</span>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-h">
+          <div class="pcard-ico">🖐️</div>
+          <div class="badges">
+            <span class="badge b-p">v1 · live</span><span class="badge" style="background:rgba(245,166,35,.15);color:var(--amber);border:1px solid rgba(245,166,35,.3)">classifier training in progress</span>
+            <span class="badge b-t">TF.js</span>
+            <span class="badge b-t">Canvas API</span>
+          </div>
+        </div>
+        <div class="pcard-b">
+          <div class="pcard-ti">ASL Fingerspelling Interpreter</div>
+          <div class="pcard-de">Real-time ASL fingerspelling recognition running entirely in the browser — no server, no data sent. Detects hand landmarks using MediaPipe and classifies A–Z letter shapes. V1 uses a rule-based classifier (training in progress). V2 will use a trained ML model with movement-based signs and higher accuracy.</div>
+          <div class="chips" style="margin-bottom:14px"><span class="chip">MediaPipe Tasks Vision</span><span class="chip">Hand Landmark Detection</span><span class="chip">Canvas API</span><span class="chip">JavaScript</span></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+            <button class="btn btn-p" style="font-size:.72rem;padding:8px 16px" onclick="openASL()">Try Demo →</button>
+            <span style="font-family:var(--mono);font-size:.65rem;color:var(--dim)">Work in progress · camera required</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>built by anu-ujin erdenebaatar · ulaanbaatar, mongolia · 2026</footer>
+</div>
+
+<!-- STACK -->
+<div id="page-stack" class="page">
+  <div class="sec">
+    <div class="sec-ey">tools and technologies</div>
+    <div class="sec-ti">Tool Stack</div>
+    <div class="sec-de">Everything here has been used in production. Not a list of things I have heard of.</div>
+
+    <div class="scat"><div class="scat-l">Automation and Integration</div><div class="sgrid">
+      <div class="sitem"><div class="slogo" style="background:#6D00CC;border-radius:6px"><img src="https://cdn.simpleicons.org/make/ffffff" alt="Make.com" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">Make.com</div></div>
+      <div class="sitem"><div class="slogo" style="background:#FF4A00;border-radius:6px"><img src="https://cdn.simpleicons.org/zapier/ffffff" alt="Zapier" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">Zapier</div></div>
+      <div class="sitem"><div class="slogo" style="background:#188038;border-radius:6px"><img src="https://cdn.simpleicons.org/googleappsscript/ffffff" alt="Apps Script" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">Apps Script</div></div>
+      <div class="sitem"><div class="slogo" style="background:#F26207;border-radius:6px"><img src="https://cdn.simpleicons.org/replit/ffffff" alt="Replit" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">Replit</div></div>
+      <div class="sitem"><div class="slogo" style="background:#1e3a5c;border-radius:6px"><span style="font-family:var(--mono);font-size:7px;color:white;font-weight:700;line-height:1.1;text-align:center;padding:2px">W</span></div><div class="sname">Webhooks</div></div>
+      <div class="sitem"><div class="slogo" style="background:#0f2d48;border-radius:6px"><span style="font-family:var(--mono);font-size:7px;color:white;font-weight:700;line-height:1.1;text-align:center;padding:2px">RA</span></div><div class="sname">REST APIs</div></div>
+    </div></div>
+
+    <div class="scat"><div class="scat-l">CRM and Data</div><div class="sgrid">
+      <div class="sitem"><div class="slogo" style="background:#00A1E0;border-radius:6px"><img src="https://cdn.simpleicons.org/salesforce/ffffff" alt="Salesforce" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">Salesforce</div></div>
+      <div class="sitem"><div class="slogo" style="background:#188038;border-radius:6px"><img src="https://cdn.simpleicons.org/googlesheets/ffffff" alt="Google Sheets" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">Google Sheets</div></div>
+      <div class="sitem"><div class="slogo" style="background:#1A73E8;border-radius:6px"><img src="https://cdn.simpleicons.org/googledrive/ffffff" alt="Google Drive" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">Google Drive</div></div>
+      <div class="sitem"><div class="slogo" style="background:#EA4335;border-radius:6px"><img src="https://cdn.simpleicons.org/gmail/ffffff" alt="Gmail" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">Gmail</div></div>
+      <div class="sitem"><div class="slogo" style="background:#4285F4;border-radius:6px"><img src="https://cdn.simpleicons.org/looker/ffffff" alt="LookerStudio" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">LookerStudio</div></div>
+      <div class="sitem"><div class="slogo" style="background:#00897B;border-radius:6px"><img src="https://cdn.simpleicons.org/googlemeet/ffffff" alt="Google Meet" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">Google Meet</div></div>
+    </div></div>
+
+    <div class="scat"><div class="scat-l">Outbound and Lead Intelligence</div><div class="sgrid">
+      <div class="sitem"><div class="slogo" style="background:#4f46e5;border-radius:6px"><img src="https://logo.clearbit.com/instantly.ai" alt="Instantly" loading="lazy" width="24" height="24" style="display:block;border-radius:4px" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span style="display:none;font-family:var(--mono);font-size:7px;color:white;font-weight:700;line-height:1.1;text-align:center">Ins</span></div><div class="sname">Instantly</div></div>
+      <div class="sitem"><div class="slogo" style="background:#e03d2f;border-radius:6px"><img src="https://logo.clearbit.com/lemlist.com" alt="Lemlist" loading="lazy" width="24" height="24" style="display:block;border-radius:4px" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span style="display:none;font-family:var(--mono);font-size:7px;color:white;font-weight:700;line-height:1.1;text-align:center">Lem</span></div><div class="sname">Lemlist</div></div>
+      <div class="sitem"><div class="slogo" style="background:#1a1f3c;border-radius:6px"><img src="https://logo.clearbit.com/apollo.io" alt="Apollo.io" loading="lazy" width="24" height="24" style="display:block;border-radius:4px" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span style="display:none;font-family:var(--mono);font-size:7px;color:white;font-weight:700;line-height:1.1;text-align:center">Apo</span></div><div class="sname">Apollo.io</div></div>
+      <div class="sitem"><div class="slogo" style="background:#111827;border-radius:6px"><img src="https://logo.clearbit.com/clay.com" alt="Clay" loading="lazy" width="24" height="24" style="display:block;border-radius:4px" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span style="display:none;font-family:var(--mono);font-size:7px;color:white;font-weight:700;line-height:1.1;text-align:center">Cla</span></div><div class="sname">Clay</div></div>
+      <div class="sitem"><div class="slogo" style="background:#f35815;border-radius:6px"><img src="https://logo.clearbit.com/hunter.io" alt="Hunter.io" loading="lazy" width="24" height="24" style="display:block;border-radius:4px" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span style="display:none;font-family:var(--mono);font-size:7px;color:white;font-weight:700;line-height:1.1;text-align:center">Hun</span></div><div class="sname">Hunter.io</div></div>
+      <div class="sitem"><div class="slogo" style="background:#1e2d40;border-radius:6px"><span style="font-family:var(--mono);font-size:7px;color:white;font-weight:700;line-height:1.1;text-align:center;padding:2px">O</span></div><div class="sname">Outscraper</div></div>
+      <div class="sitem"><div class="slogo" style="background:#0055cc;border-radius:6px"><img src="https://logo.clearbit.com/linkup.so" alt="Linkup" loading="lazy" width="24" height="24" style="display:block;border-radius:4px" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span style="display:none;font-family:var(--mono);font-size:7px;color:white;font-weight:700;line-height:1.1;text-align:center">Lin</span></div><div class="sname">Linkup</div></div>
+    </div></div>
+
+    <div class="scat"><div class="scat-l">Communication and Support</div><div class="sgrid">
+      <div class="sitem"><div class="slogo" style="background:#4A154B;border-radius:6px"><img src="https://cdn.simpleicons.org/slack/ffffff" alt="Slack" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">Slack</div></div>
+      <div class="sitem"><div class="slogo" style="background:#2D8CFF;border-radius:6px"><img src="https://cdn.simpleicons.org/zoom/ffffff" alt="Zoom" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">Zoom</div></div>
+      <div class="sitem"><div class="slogo" style="background:#F76B39;border-radius:6px"><img src="https://logo.clearbit.com/front.com" alt="Front" loading="lazy" width="24" height="24" style="display:block;border-radius:4px" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span style="display:none;font-family:var(--mono);font-size:7px;color:white;font-weight:700;line-height:1.1;text-align:center">Fro</span></div><div class="sname">Front</div></div>
+      <div class="sitem"><div class="slogo" style="background:#000000;border-radius:6px"><img src="https://cdn.simpleicons.org/notion/ffffff" alt="Notion" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">Notion</div></div>
+      <div class="sitem"><div class="slogo" style="background:#00C4CC;border-radius:6px"><img src="https://cdn.simpleicons.org/canva/ffffff" alt="Canva" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">Canva</div></div>
+    </div></div>
+
+    <div class="scat"><div class="scat-l">AI and Intelligence</div><div class="sgrid">
+      <div class="sitem"><div class="slogo" style="background:#D4A27F;border-radius:6px"><img src="https://cdn.simpleicons.org/anthropic/ffffff" alt="Claude" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">Claude</div></div>
+      <div class="sitem"><div class="slogo" style="background:#1e3a3a;border-radius:6px"><span style="font-family:var(--mono);font-size:7px;color:white;font-weight:700;line-height:1.1;text-align:center;padding:2px">CM</span></div><div class="sname">Claude MCP</div></div>
+      <div class="sitem"><div class="slogo" style="background:#412991;border-radius:6px"><img src="https://cdn.simpleicons.org/openai/ffffff" alt="ChatGPT" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">ChatGPT</div></div>
+      <div class="sitem"><div class="slogo" style="background:#4285F4;border-radius:6px"><img src="https://cdn.simpleicons.org/googlegemini/ffffff" alt="Gemini" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">Gemini</div></div>
+      <div class="sitem"><div class="slogo" style="background:#20808D;border-radius:6px"><img src="https://cdn.simpleicons.org/perplexity/ffffff" alt="Perplexity" loading="lazy" width="20" height="20" style="display:block"></div><div class="sname">Perplexity</div></div>
+      <div class="sitem"><div class="slogo" style="background:#1a1a2e;border-radius:6px"><img src="https://logo.clearbit.com/manus.im" alt="Manus AI" loading="lazy" width="24" height="24" style="display:block;border-radius:4px" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span style="display:none;font-family:var(--mono);font-size:7px;color:white;font-weight:700;line-height:1.1;text-align:center">Man</span></div><div class="sname">Manus AI</div></div>
+      <div class="sitem"><div class="slogo" style="background:#a78bfa;border-radius:6px"><span style="font-family:var(--mono);font-size:7px;color:white;font-weight:700;line-height:1.1;text-align:center;padding:2px">M</span></div><div class="sname">MediaPipe</div></div>
+    </div></div>
+
+  </div>
+  <footer>built by anu-ujin erdenebaatar · ulaanbaatar, mongolia · 2026</footer>
+</div>
+
+<!-- MODALS -->
+
+<!-- Dashboard Modal -->
+<div class="mov" id="modal-dash" onclick="closeModalOut(event,'modal-dash')">
+  <div class="modal" style="max-width:740px">
+    <div class="m-hd"><div class="m-ti">Campaign Intelligence Dashboard — Interactive Demo</div><button class="m-cl" onclick="closeModal('modal-dash')">✕</button></div>
+    <div class="m-body">
+      <div class="m-note">Mock data only. The real dashboard connects to live Instantly, Lemlist, and Zapier data with Claude MCP.</div>
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab('dash','overview')">Overview</button>
+        <button class="tab-btn" onclick="switchTab('dash','campaigns')">Campaigns</button>
+        <button class="tab-btn" onclick="switchTab('dash','ab')">A/B Testing</button>
+        <button class="tab-btn" onclick="switchTab('dash','health')">Sender Health</button>
+        <button class="tab-btn" onclick="switchTab('dash','changelog')">Changelog</button>
+        <button class="tab-btn" onclick="switchTab('dash','chatbot')">Ask Claude</button>
+      </div>
+      <div id="dash-overview" class="tab-pane active">
+        <div class="kgrid">
+          <div class="kpi up"><div class="kpi-l">Open Rate</div><div class="kpi-v">35.5%</div><div class="kpi-ch">bench: 30% · +5.5%</div></div>
+          <div class="kpi warn"><div class="kpi-l">Reply Rate</div><div class="kpi-v">5.4%</div><div class="kpi-ch">bench: 5% · above</div></div>
+          <div class="kpi bad"><div class="kpi-l">Bounce Rate</div><div class="kpi-v">2.6%</div><div class="kpi-ch">1 campaign flagged</div></div>
+          <div class="kpi neu"><div class="kpi-l">Emails Sent</div><div class="kpi-v">15.3k</div><div class="kpi-ch">this week</div></div>
+          <div class="kpi up"><div class="kpi-l">Genuine Replies</div><div class="kpi-v">878</div><div class="kpi-ch">5.4% of sent</div></div>
+          <div class="kpi warn"><div class="kpi-l">Senders Active</div><div class="kpi-v">8</div><div class="kpi-ch">1 critical, 2 warn</div></div>
+        </div>
+        <div style="background:rgba(255,107,138,.08);border:1px solid rgba(255,107,138,.2);border-radius:6px;padding:8px 12px;font-family:var(--mono);font-size:.7rem;color:var(--red)">⚠ Enterprise_EMEA_2 bounce rate 5.0% — above 3% threshold. Recommend pausing and re-enriching.</div>
+      </div>
+      <div id="dash-campaigns" class="tab-pane">
+        <table class="dt-table" style="width:100%">
+          <tr><th>Campaign</th><th>Platform</th><th>Sent</th><th>Open</th><th>Reply</th><th>Status</th></tr>
+          <tr><td class="hi">Enterprise_UK_Q2</td><td>Instantly</td><td>5,500</td><td class="ok">45.0%</td><td class="ok">7.0%</td><td class="ok">Active</td></tr>
+          <tr><td class="hi">SMB_APAC_Trial</td><td>Instantly</td><td>4,800</td><td class="warn">36.0%</td><td class="warn">5.5%</td><td class="ok">Active</td></tr>
+          <tr><td class="hi">Partner_EMEA_Pro2</td><td>Lemlist</td><td>3,800</td><td class="ok">32.0%</td><td class="warn">5.0%</td><td class="ok">Active</td></tr>
+          <tr><td class="hi">Enterprise_EMEA_2</td><td>Instantly</td><td>3,200</td><td class="warn">29.5%</td><td class="warn">4.2%</td><td class="bad">Paused</td></tr>
+        </table>
+      </div>
+      <div id="dash-ab" class="tab-pane">
+        <div style="font-family:var(--mono);font-size:.62rem;color:var(--dim);margin-bottom:10px;text-transform:uppercase;letter-spacing:.08em">Enterprise_UK_Q2 · Subject Line Test</div>
+        <table class="dt-table">
+          <tr><th>Variant</th><th>Open Rate</th><th>Reply Rate</th><th>Winner</th></tr>
+          <tr><td>A: Pain-point framing</td><td class="ok">45.0%</td><td class="ok">7.0%</td><td class="ok">✓ Winner</td></tr>
+          <tr><td>B: Generic intro</td><td class="warn">28.1%</td><td class="warn">3.9%</td><td class="bad">✗</td></tr>
+        </table>
+        <div style="margin-top:14px;font-family:var(--mono);font-size:.62rem;color:var(--dim);margin-bottom:10px;text-transform:uppercase;letter-spacing:.08em">Partner_EMEA_Pro2 · Email Angle Test</div>
+        <table class="dt-table">
+          <tr><th>Variant</th><th>Open Rate</th><th>Reply Rate</th><th>Winner</th></tr>
+          <tr><td>A: Location angle (w3w)</td><td class="ok">32.0%</td><td class="ok">5.0%</td><td class="ok">✓ Winner</td></tr>
+          <tr><td>B: ROI framing</td><td class="warn">29.5%</td><td class="warn">4.2%</td><td class="bad">✗</td></tr>
+        </table>
+      </div>
+      <div id="dash-health" class="tab-pane">
+        <div class="health-row"><div class="health-dot ok"></div><div class="health-name" style="font-family:var(--mono);font-size:.72rem">alex@outreach.io</div><div class="health-bar-wrap"><div class="health-bar" style="width:100%;background:var(--green)"></div></div><div class="health-score" style="color:var(--green)">100</div></div>
+        <div class="health-row"><div class="health-dot ok"></div><div class="health-name" style="font-family:var(--mono);font-size:.72rem">maya@outreach.io</div><div class="health-bar-wrap"><div class="health-bar" style="width:98%;background:var(--green)"></div></div><div class="health-score" style="color:var(--green)">98</div></div>
+        <div class="health-row"><div class="health-dot warn"></div><div class="health-name" style="font-family:var(--mono);font-size:.72rem">sam@outreach.io</div><div class="health-bar-wrap"><div class="health-bar" style="width:70%;background:var(--amber)"></div></div><div class="health-score" style="color:var(--amber)">70</div></div>
+        <div class="health-row"><div class="health-dot warn"></div><div class="health-name" style="font-family:var(--mono);font-size:.72rem">pat@outreach.io</div><div class="health-bar-wrap"><div class="health-bar" style="width:65%;background:var(--amber)"></div></div><div class="health-score" style="color:var(--amber)">65</div></div>
+        <div class="health-row"><div class="health-dot bad"></div><div class="health-name" style="font-family:var(--mono);font-size:.72rem">sender05@out.io</div><div class="health-bar-wrap"><div class="health-bar" style="width:35%;background:var(--red)"></div></div><div class="health-score" style="color:var(--red)">35 ⚠</div></div>
+        <div style="margin-top:10px;font-family:var(--mono);font-size:.65rem;color:var(--red)">sender05 critical — spam score 8.2, warmup disabled. Recommend removing from active campaigns.</div>
+      </div>
+      <div id="dash-changelog" class="tab-pane">
+        <div class="clog-entry"><div class="clog-date">Apr 14 2026 · Enterprise_UK_Q2</div><div class="clog-type opt">OPTIMIZATION</div><div class="clog-desc">Switched subject line from generic intro to pain-point framing after A/B test ran 5 days.</div><div class="clog-result">Result: Open rate 38% → 45% in 48h. Reply rate 5.5% → 7.0%</div></div>
+        <div class="clog-entry"><div class="clog-date">Apr 12 2026 · Enterprise_EMEA_2</div><div class="clog-type issue">ISSUE</div><div class="clog-desc">Bounce rate hit 5% threshold — list paused for re-enrichment. Error code 5.1.1 dominant.</div><div class="clog-result">Action: Campaign paused, list sent for re-verification</div></div>
+        <div class="clog-entry"><div class="clog-date">Apr 9 2026 · Partner_EMEA_Pro2</div><div class="clog-type change">CHANGE</div><div class="clog-desc">Switched from ROI framing to w3w location angle after first 500 sends showed weak engagement.</div><div class="clog-result">Result: Open rate +2.5% · reply rate +0.8%</div></div>
+      </div>
+      <div id="dash-chatbot" class="tab-pane">
+        <div class="chatdemo">
+          <div class="chat-hd"><div class="chat-av">🤖</div><div><div class="chat-bn">GO Campaign Intelligence</div><div class="chat-bs">connected to mock data</div></div></div>
+          <div class="chat-msgs" id="dash-msgs"><div class="cm bot">Ask me anything about campaign performance, sender health, A/B results, or the changelog. What would you like to know?</div></div>
+          <div class="typing" id="dash-typing"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div>
+          <div class="chat-ir">
+            <input class="chat-in" id="dash-input" placeholder="e.g. Best reply rate campaign?" onkeydown="if(event.key==='Enter')sendDash()">
+            <button class="chat-snd" onclick="sendDash()">Send</button>
+          </div>
+        </div>
+        <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px">
+          <button onclick="dashQ('Which campaign has the best open rate?')" style="background:var(--sur);border:1px solid var(--bdr);border-radius:20px;padding:4px 10px;font-family:var(--mono);font-size:.62rem;color:var(--mid);cursor:pointer">Best open rate?</button>
+          <button onclick="dashQ('What is our bounce rate this week?')" style="background:var(--sur);border:1px solid var(--bdr);border-radius:20px;padding:4px 10px;font-family:var(--mono);font-size:.62rem;color:var(--mid);cursor:pointer">Bounce rate?</button>
+          <button onclick="dashQ('Which sender has a health warning?')" style="background:var(--sur);border:1px solid var(--bdr);border-radius:20px;padding:4px 10px;font-family:var(--mono);font-size:.62rem;color:var(--mid);cursor:pointer">Sender warnings?</button>
+          <button onclick="dashQ('What was the last changelog entry?')" style="background:var(--sur);border:1px solid var(--bdr);border-radius:20px;padding:4px 10px;font-family:var(--mono);font-size:.62rem;color:var(--mid);cursor:pointer">Latest changelog?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Instantly Calculator Modal -->
+<div class="mov" id="modal-instantly" onclick="closeModalOut(event,'modal-instantly')">
+  <div class="modal">
+    <div class="m-hd"><div class="m-ti">Campaign Calculator and Sender Assignment</div><button class="m-cl" onclick="closeModal('modal-instantly')">✕</button></div>
+    <div class="m-body">
+      <div class="m-note">Enter a campaign and the system calculates optimal sender allocation and estimated completion date.</div>
+      <div class="calc-form">
+        <div class="calc-field"><label class="calc-label">Campaign Name</label><input class="calc-input" id="c-name" value="Enterprise_UK_Q2" placeholder="Campaign name"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="calc-field"><label class="calc-label">Target Leads</label><input class="calc-input" id="c-leads" type="number" value="2500" min="100"></div>
+          <div class="calc-field"><label class="calc-label">Complete By</label><input class="calc-input" id="c-date" type="date" value="2026-04-26"></div>
+        </div>
+        <button onclick="runCalc()" class="btn btn-p" style="font-size:.75rem;padding:9px 18px;margin-top:4px">Calculate and Assign</button>
+      </div>
+      <div class="calc-result" id="calc-result">
+        <div class="calc-result-grid">
+          <div class="cr-item"><div class="cr-label">Senders Needed</div><div class="cr-value" id="c-senders">7</div></div>
+          <div class="cr-item"><div class="cr-label">Daily Capacity</div><div class="cr-value" id="c-daily">~357/day</div></div>
+          <div class="cr-item"><div class="cr-label">Est. Completion</div><div class="cr-value" id="c-completion" style="font-size:.9rem">Apr 26</div></div>
+          <div class="cr-item"><div class="cr-label">Accounts Skipped</div><div class="cr-value" id="c-skipped" style="color:var(--amber)">3 (health warn)</div></div>
+        </div>
+        <div class="assign-log" id="assign-log"></div>
+        <div class="confirm-badge" id="confirm-badge">✓ Live in Instantly — assignments active. Logged to master sheet.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lead Cleaner Modal -->
+<div class="mov" id="modal-cleaner" onclick="closeModalOut(event,'modal-cleaner')">
+  <div class="modal">
+    <div class="m-hd"><div class="m-ti">Lead File Cleaner — Full Demo</div><button class="m-cl" onclick="closeModal('modal-cleaner')">✕</button></div>
+    <div class="m-body">
+      <div class="m-note">This shows how the cleaner handles a realistic messy export. Click Clean File to run the process.</div>
+      <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;overflow:hidden;margin-bottom:12px">
+        <div style="padding:8px 14px;border-bottom:1px solid var(--bdr);font-family:var(--mono);font-size:.62rem;color:var(--red);display:flex;align-items:center;justify-content:space-between">
+          <span>leads_export_raw.csv · 8 rows · 5 issues detected</span>
+          <button onclick="runFullCleaner()" id="full-clean-btn" class="btn btn-p" style="font-size:.68rem;padding:5px 12px">Clean File</button>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="dt-table" style="min-width:500px">
+            <tr><th>#</th><th>Email</th><th>Company</th><th>Phone</th><th>Issue</th></tr>
+            <tr><td>1</td><td style="color:var(--red)">not@valid</td><td>Acme Inc</td><td></td><td class="bad">invalid email</td></tr>
+            <tr><td>2</td><td class="ok">ceo@buildco.io</td><td>Build Co</td><td>+1 212 555</td><td class="ok">ok</td></tr>
+            <tr><td>3</td><td style="color:var(--amber)">j@b.co, j@b.co</td><td>JB Ltd</td><td></td><td class="warn">duplicate</td></tr>
+            <tr><td>4</td><td class="ok">founder@scale.io</td><td>Scale Fast</td><td>+44 20 555</td><td class="ok">ok</td></tr>
+            <tr><td>5</td><td></td><td>Ghost Corp</td><td></td><td class="bad">missing email</td></tr>
+            <tr><td>6</td><td style="color:var(--red)">notanemail</td><td>Ops Ltd</td><td></td><td class="bad">invalid format</td></tr>
+            <tr><td>7</td><td class="ok">ops@infra.io</td><td>Infra Co</td><td>+1 415 555</td><td class="ok">ok</td></tr>
+            <tr><td>8</td><td style="color:var(--amber)">ceo@buildco.io</td><td>Build Co</td><td></td><td class="warn">duplicate of #2</td></tr>
+          </table>
+        </div>
+      </div>
+      <div id="full-clean-result" style="display:none">
+        <div style="background:var(--bg2);border:1px solid rgba(57,217,138,.3);border-radius:10px;overflow:hidden">
+          <div style="padding:8px 14px;border-bottom:1px solid rgba(57,217,138,.2);font-family:var(--mono);font-size:.62rem;color:var(--green);display:flex;align-items:center;justify-content:space-between">
+            <span>leads_clean.csv · 3 valid rows · 5 removed</span>
+            <span style="font-family:var(--mono);font-size:.6rem;color:var(--teal)">Ready for Instantly</span>
+          </div>
+          <table class="dt-table">
+            <tr><th>#</th><th>Email</th><th>Company</th><th>Phone</th><th>Status</th></tr>
+            <tr><td>1</td><td class="ok">ceo@buildco.io</td><td>Build Co</td><td>+1 212 555</td><td class="ok">Ready</td></tr>
+            <tr><td>2</td><td class="ok">founder@scale.io</td><td>Scale Fast</td><td>+44 20 555</td><td class="ok">Ready</td></tr>
+            <tr><td>3</td><td class="ok">ops@infra.io</td><td>Infra Co</td><td>+1 415 555</td><td class="ok">Ready</td></tr>
+          </table>
+          <div style="padding:10px 14px;font-family:var(--mono);font-size:.65rem;color:var(--dim)">Removed: 1 invalid email · 1 invalid format · 1 missing email · 2 duplicates</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KB Chatbot Modal -->
+<div class="mov" id="modal-kb" onclick="closeModalOut(event,'modal-kb')">
+  <div class="modal">
+    <div class="m-hd"><div class="m-ti">Knowledge Base Chatbot — Demo</div><button class="m-cl" onclick="closeModal('modal-kb')">✕</button></div>
+    <div class="m-body">
+      <div class="m-note">Simulating the knowledge base chatbot. In production this connects to real Notion docs and Slack history.</div>
+      <div class="chatdemo">
+        <div class="chat-hd"><div class="chat-av">📋</div><div><div class="chat-bn">what3words KB Bot</div><div class="chat-bs">connected to Notion + Slack (demo)</div></div></div>
+        <div class="chat-msgs" id="kb-msgs"><div class="cm bot">Ask me anything about what3words APIs, integrations, or internal processes. I'll pull from our Notion knowledge base and relevant Slack threads.</div></div>
+        <div class="typing" id="kb-typing"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div>
+        <div class="chat-ir">
+          <input class="chat-in" id="kb-input" placeholder="e.g. How do I authenticate the w3w API?" onkeydown="if(event.key==='Enter')sendKB()">
+          <button class="chat-snd" onclick="sendKB()">Send</button>
+        </div>
+      </div>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px">
+        <button onclick="kbQ('How do I use the convert-to-3wa endpoint?')" style="background:var(--sur);border:1px solid var(--bdr);border-radius:20px;padding:4px 10px;font-family:var(--mono);font-size:.62rem;color:var(--mid);cursor:pointer">Convert to 3WA?</button>
+        <button onclick="kbQ('What is the API rate limit?')" style="background:var(--sur);border:1px solid var(--bdr);border-radius:20px;padding:4px 10px;font-family:var(--mono);font-size:.62rem;color:var(--mid);cursor:pointer">Rate limits?</button>
+        <button onclick="kbQ('How do partner API keys work?')" style="background:var(--sur);border:1px solid var(--bdr);border-radius:20px;padding:4px 10px;font-family:var(--mono);font-size:.62rem;color:var(--mid);cursor:pointer">Partner API keys?</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Chess Modal -->
+<div class="mov" id="chess-modal" onclick="closeModalOut(event,'chess-modal')">
+  <div class="modal chess-modal">
+    <div class="m-hd"><div class="m-ti">Anime Battle Chess v1</div><button class="m-cl" onclick="closeModal('chess-modal')">✕</button></div>
+    <div style="padding:0">
+      <iframe src="anime-chess.html" style="width:100%;height:600px;border:none;border-radius:0 0 16px 16px;display:block"></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="mov" id="asl-modal" onclick="closeASL()">
+  <div class="modal" style="max-width:min(1060px,96vw);max-height:92vh;overflow:hidden" onclick="event.stopPropagation()">
+    <div class="m-hd">
+      <div>
+        <div class="m-ti">ASL Fingerspelling Interpreter</div>
+        <div style="font-family:var(--mono);font-size:.62rem;color:var(--dim);margin-top:2px">v1 · work in progress · TensorFlow.js · camera required</div>
+      </div>
+      <button class="m-cl" onclick="closeASL()">✕</button>
+    </div>
+    <iframe id="asl-iframe" src=""
+      allow="camera;microphone"
+      style="width:100%;height:80vh;min-height:520px;border:none;display:block;border-radius:0 0 16px 16px">
+    </iframe>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const delay = ms => new Promise(r => setTimeout(r, ms));
+function showEl(id){const e=document.getElementById(id);if(e)e.classList.add('show')}
+function hideEl(id,c='show'){const e=document.getElementById(id);if(e)e.classList.remove(c)}
+function setOp(id,v){const e=document.getElementById(id);if(e)e.style.opacity=v}
+
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links button').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.mob-nav-btn').forEach(b=>b.classList.remove('active'));
+  const p=document.getElementById('page-'+name),b=document.getElementById('nav-'+name);
+  const mb=document.getElementById('mob-'+name);
+  if(p)p.classList.add('active');
+  if(b)b.classList.add('active');
+  if(mb)mb.classList.add('active');
+  window.scrollTo(0,0);
+  setTimeout(()=>document.querySelectorAll('.reveal:not(.visible)').forEach(el=>robs.observe(el)),80);
+}
+
+let vanta=null;
+const vs=document.createElement('script');
+vs.src='https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.net.min.js';
+vs.onload=()=>{if(typeof VANTA!=='undefined'&&!vanta)vanta=VANTA.NET({el:'#vbg',THREE,mouseControls:true,touchControls:true,minHeight:200,minWidth:200,scale:1.0,color:0x00c9a7,backgroundColor:0x0a0d12,points:10,maxDistance:22,spacing:18})};
+document.head.appendChild(vs);
+
+const robs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);robs.unobserve(e.target)}})},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>robs.observe(el));
+
+// HOVER ANIMATIONS - trigger replay on mouseenter
+const animMap = {'anim1':replayD1,'anim2':resetAssign,'anim3':replay3,'anim4':replay4,'anim5':resetCleaner,'animC3':replayC3};
+document.querySelectorAll('.case-anim[data-anim]').forEach(anim=>{
+  let tmr;
+  anim.addEventListener('mouseenter',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{const fn=animMap[anim.dataset.anim];if(fn)fn();},400);
+  });
+});
+
+function toggleCase(n){
+  const d=document.getElementById('det'+n),t=document.getElementById('tg'+n),tx=document.getElementById('tg'+n+'-txt');
+  if(!d)return;const o=d.classList.contains('open');
+  d.classList.toggle('open');if(t)t.classList.toggle('open');
+  if(tx)tx.textContent=o?'View details':'Hide details';
+}
+function toggleCaseC(n){
+  const d=document.getElementById('det'+n);if(!d)return;d.classList.toggle('open');
+}
+
+function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden'}
+function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow=''}
+function closeModalOut(e,id){if(e.target.classList.contains('mov'))closeModal(id)}
+
+// ASL demo — lazy-loads the iframe so TF.js only downloads when opened
+function openASL(){
+  const modal=document.getElementById('asl-modal');
+  const iframe=document.getElementById('asl-iframe');
+  if(!iframe.src||iframe.src==='about:blank'||!iframe.src.includes('asl')){
+    iframe.src='asl-v1.html';
+  }
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeASL(){
+  document.getElementById('asl-modal').classList.remove('open');
+  document.body.style.overflow='';
+  // Don't unload iframe — keeps model in memory so reopening is instant
+}
+
+function switchTab(group,tab){
+  document.querySelectorAll(`#modal-${group} .tab-btn`).forEach((b,i)=>{
+    const tabs=document.querySelectorAll(`#modal-${group} .tab-pane`);
+    b.classList.remove('active');if(tabs[i])tabs[i].classList.remove('active');
+  });
+  const allBtns=document.querySelectorAll(`#modal-${group} .tab-btn`);
+  const allPanes=document.querySelectorAll(`#modal-${group} .tab-pane`);
+  allBtns.forEach(b=>{if(b.textContent.toLowerCase().includes(tab.slice(0,4))||b.onclick?.toString().includes(tab)){b.classList.add('active')}});
+  const pane=document.getElementById('dash-'+tab)||document.getElementById(tab);
+  if(pane)pane.classList.add('active');
+}
+
+// DASHBOARD ANIM
+async function replayD1(){
+  ['d1k1','d1k2','d1k3','d1chat'].forEach(id=>setOp(id,0));
+  await delay(200);
+  ['d1k1','d1k2','d1k3','d1chat'].forEach(id=>setOp(id,1));
+}
+setTimeout(replayD1,600);
+
+// INSTANTLY SUITE ANIM
+async function resetAssign(){
+  ['asn1','asn2','asn3'].forEach(id=>hideEl(id));
+  const confirm=document.getElementById('asn-confirm');if(confirm)confirm.style.display='none';
+  const btn=document.getElementById('btn-assign'),st=document.getElementById('assign-status');
+  if(btn){btn.textContent='Calculate & Assign';btn.style.background='#1a73e8';delete btn.dataset.run}
+  if(st)st.textContent='';
+}
+async function runAssign(){
+  const btn=document.getElementById('btn-assign'),st=document.getElementById('assign-status');
+  if(!btn||btn.dataset.run)return;
+  btn.dataset.run='1';btn.textContent='Calculating...';btn.style.background='#555';
+  if(st)st.textContent='Fetching accounts from Instantly API...';
+  await delay(700);if(st)st.textContent='Optimal distribution found: 7 senders';
+  await delay(500);
+  for(const id of['asn1','asn2','asn3']){showEl(id);await delay(300);}
+  const confirm=document.getElementById('asn-confirm');if(confirm)confirm.style.display='block';
+  btn.textContent='Assigned';btn.style.background='#0F9D58';
+  if(st)st.textContent='Est. completion: 7 days · logged to master sheet';
+}
+
+// ZAPIER SUITE ANIM
+async function replay3(){
+  ['ft1','ft2','ft3'].forEach(id=>hideEl(id));
+  ['ft1t','ft2t','ft3t'].forEach(id=>hideEl(id,'show'));
+  hideEl('slk3m1');hideEl('slk3m2');
+  await delay(300);
+  for(const id of['ft1','ft2','ft3']){showEl(id);await delay(200);}
+  await delay(300);
+  for(const id of['ft1t','ft2t','ft3t']){showEl(id,'show');await delay(160);}
+  await delay(400);showEl('slk3m1');await delay(500);showEl('slk3m2');
+}
+setTimeout(replay3,900);
+
+// SF REPORT ANIM
+async function replay4(){
+  ['g4r1','g4r2','g4r3','g4r4'].forEach(id=>hideEl(id));
+  hideEl('slk4m1');
+  await delay(300);
+  for(const id of['g4r1','g4r2','g4r3','g4r4']){showEl(id);await delay(280);}
+  await delay(500);showEl('slk4m1');
+}
+setTimeout(replay4,700);
+
+// LEAD CLEANER ANIM
+async function runCleaner(){
+  const btn=document.getElementById('clean-btn'),frame=document.getElementById('clean-result-frame');
+  if(!btn||btn.dataset.run)return;
+  btn.dataset.run='1';btn.textContent='Cleaning...';btn.style.background='#555';
+  if(frame)frame.style.opacity='0';
+  ['cr1','cr2','cr3','cr4'].forEach(id=>hideEl(id));
+  await delay(800);
+  if(frame)frame.style.opacity='1';
+  for(const id of['cr1','cr2','cr3','cr4']){showEl(id);await delay(250);}
+  btn.textContent='Done';btn.style.background='#0F9D58';
+}
+async function resetCleaner(){
+  const btn=document.getElementById('clean-btn'),frame=document.getElementById('clean-result-frame');
+  if(btn){btn.textContent='Clean File';btn.style.background='#1a73e8';delete btn.dataset.run}
+  if(frame)frame.style.opacity='0';
+  ['cr1','cr2','cr3','cr4'].forEach(id=>hideEl(id));
+  await delay(100);if(frame)frame.style.opacity='0';
+}
+
+// CONCEPT ANIMATIONS
+async function replayC3(){
+  hideEl('sig5');hideEl('signed5');
+  ['n5h1','n5p1','n5p2','n5p3','n5d','n5b'].forEach(id=>document.getElementById(id)?.classList.remove('show'));
+  await delay(400);showEl('sig5');await delay(700);showEl('signed5');await delay(400);
+  for(const id of['n5h1','n5p1','n5p2','n5p3','n5d','n5b']){document.getElementById(id)?.classList.add('show');await delay(200);}
+}
+setTimeout(replayC3,800);
+
+// TICKET ROUTING INTERACTIVE
+const routeMap={
+  billing:{ch:'billing-team',color:var_amber(),label:'💳 Billing issue'},
+  bug:{ch:'engineering',color:var_red(),label:'🐛 Bug report'},
+  sales:{ch:'revenue-ops',color:var_green(),label:'💰 Upgrade request'},
+  tech:{ch:'tech-support',color:var_blue(),label:'🔧 Technical query'}
+};
+function var_amber(){return'#f5a623'}function var_red(){return'#ff6b8a'}function var_green(){return'#39d98a'}function var_blue(){return'#4da6ff'}
+async function routeTicket(type){
+  const rm=routeMap[type],result=document.getElementById('route-result');
+  if(!result)return;
+  result.style.display='none';
+  await delay(200);
+  result.style.display='block';
+  result.style.color=rm.color;
+  result.style.borderColor=rm.color+'44';
+  result.innerHTML=`Ticket: <strong style="color:${rm.color}">${rm.label}</strong><br>Make.com reads subject → categorises → routes<br><br><span style="color:var(--teal)">Slack: #${rm.ch} notified in 2 seconds</span><br><span style="color:var(--dim)">Front: tagged · SLA clock started</span>`;
+}
+
+// PAYMENT FAILURE
+async function runC4(){
+  const btn=document.getElementById('stripe-btn'),st=document.getElementById('stripe-status');
+  if(!btn||btn.dataset.run)return;btn.dataset.run='1';
+  btn.className='str-btn proc';btn.textContent='Processing...';btn.onclick=null;
+  st.className='str-st spin';st.textContent='Contacting bank...';
+  await delay(1400);
+  btn.className='str-btn fail';btn.textContent='Payment Declined';
+  st.className='str-st err';st.textContent='card_declined · Webhook fired';
+  await delay(500);showEl('slk6m1');
+}
+async function replayC4(){
+  const btn=document.getElementById('stripe-btn'),st=document.getElementById('stripe-status');
+  hideEl('slk6m1');btn.className='str-btn ready';btn.textContent='Pay $299.00';
+  btn.onclick=runC4;st.textContent='';st.className='str-st';delete btn?.dataset.run;
+}
+
+// CALCULATOR MODAL
+async function runCalc(){
+  const leads=parseInt(document.getElementById('c-leads')?.value)||2500;
+  const dateVal=document.getElementById('c-date')?.value;
+  const result=document.getElementById('calc-result');
+  const log=document.getElementById('assign-log');
+  const confirm=document.getElementById('confirm-badge');
+  if(result)result.classList.add('show');
+  if(log)log.innerHTML='';
+  if(confirm)confirm.classList.remove('show');
+  const daysLeft=dateVal?Math.max(1,Math.round((new Date(dateVal)-new Date())/(1000*60*60*24))):7;
+  const dailyCap=Math.ceil(leads/daysLeft);
+  const sendersNeeded=Math.ceil(dailyCap/30);
+  document.getElementById('c-senders').textContent=sendersNeeded;
+  document.getElementById('c-daily').textContent=`~${dailyCap}/day`;
+  document.getElementById('c-completion').textContent=dateVal?new Date(dateVal).toLocaleDateString('en-GB',{month:'short',day:'numeric'}):'On time';
+  document.getElementById('c-skipped').textContent='3 (below health threshold)';
+  const senders=['alex@out.io','maya@out.io','sam@out.io','pat@out.io','jo@out.io','kai@out.io','lee@out.io'];
+  for(let i=0;i<Math.min(sendersNeeded,senders.length);i++){
+    await delay(250);
+    const el=document.createElement('div');
+    el.className='assign-log-entry';
+    el.textContent=`✓ ${senders[i]} → ${document.getElementById('c-name')?.value||'Campaign'} (${30} sends/day)`;
+    if(log)log.appendChild(el);
+    await delay(50);el.classList.add('show');
+  }
+  await delay(400);
+  if(confirm)confirm.classList.add('show');
+}
+
+// LEAD CLEANER FULL DEMO
+function runFullCleaner(){
+  const btn=document.getElementById('full-clean-btn'),result=document.getElementById('full-clean-result');
+  if(!btn)return;btn.textContent='Cleaning...';btn.style.background='#555';
+  setTimeout(()=>{
+    if(result)result.style.display='block';
+    btn.textContent='Done';btn.style.background='#0F9D58';
+  },900);
+}
+
+// CHATBOT DATA
+const dashData={
+  'open rate':'Enterprise_UK_Q2 leads with <strong>45.0% open rate</strong>, up from 38% after a subject line change on Apr 14.',
+  'reply rate':'Enterprise_UK_Q2 leads at <strong>7.0% reply rate</strong> across 5,500 sent. SMB_APAC_Trial at 5.5%.',
+  'bounce':'Current average <strong>2.6%</strong>, within threshold. Enterprise_EMEA_2 flagged at 5.0% — campaign paused for re-enrichment.',
+  'bounce rate':'Current average <strong>2.6%</strong>. Enterprise_EMEA_2 above 3% threshold — paused.',
+  'health':'sender05@out.io is <strong>critical</strong> (score 35, warmup disabled). Sam and Pat at warning level. Alex and Maya are healthy at 100.',
+  'sender':'sender05@out.io critical. Two senders at warning. Alex and Maya fully healthy.',
+  'changelog':'Latest: <strong>OPTIMIZATION · Apr 14 2026</strong> — Enterprise_UK_Q2. Pain-point subject line drove open rate 38% to 45% in 48h.',
+  'week':'<strong>15,300 emails sent</strong> this week. 5.4% avg reply. 2.6% bounce. 8 active senders.',
+  'weekly':'<strong>15,300 emails sent</strong> this week. Reply rate 5.4%, bounce rate 2.6%.',
+  'a/b':'Pain-point framing beat generic intro: <strong>45% vs 28.1% open</strong>, 7.0% vs 3.9% reply on Enterprise_UK_Q2.',
+  'campaign':'4 campaigns total. 3 active, 1 paused (Enterprise_EMEA_2). Best performing: Enterprise_UK_Q2.',
+  default:'I can answer questions about open/reply rates, bounce rates, sender health, A/B results, changelog entries, and weekly performance. What would you like to know?'
+};
+const kbData={
+  '3wa':'The convert-to-3wa endpoint takes lat/lng coordinates and returns the 3-word address. Example: GET /v3/convert-to-3wa?coordinates=51.5,-0.1. Returns the what3words address for that location.',
+  'rate limit':'Free tier: <strong>1 request/second</strong>. Pro tier: <strong>10 requests/second</strong>. Both tiers have 100k monthly calls free. Enterprise limits are negotiated separately. See Notion: API Rate Limits for full breakdown.',
+  'partner':'Partner API keys differ from standard keys — they have higher rate limits and can be scoped to specific endpoints. Generated via the partner portal. Talk to the partnerships team for approval. See Notion: Partner Integration Guide.',
+  default:'I checked the Notion knowledge base and Slack threads. I found information relevant to your question — let me pull the most recent version from the docs.'
+};
+function getChatR(msg,data){const l=msg.toLowerCase();for(const[k,v]of Object.entries(data)){if(l.includes(k))return v;}return data.default}
+async function sendChat(inputId,msgsId,typingId,data){
+  const inp=document.getElementById(inputId),msgs=document.getElementById(msgsId),typing=document.getElementById(typingId);
+  const msg=inp?.value.trim();if(!msg)return;if(inp)inp.value='';
+  const um=document.createElement('div');um.className='cm usr';um.textContent=msg;msgs.appendChild(um);msgs.scrollTop=msgs.scrollHeight;
+  if(typing)typing.classList.add('show');msgs.scrollTop=msgs.scrollHeight;
+  await delay(900+Math.random()*500);
+  if(typing)typing.classList.remove('show');
+  const bm=document.createElement('div');bm.className='cm bot';bm.innerHTML=getChatR(msg,data);
+  msgs.appendChild(bm);msgs.scrollTop=msgs.scrollHeight;
+}
+function sendDash(){sendChat('dash-input','dash-msgs','dash-typing',dashData)}
+function dashQ(q){const i=document.getElementById('dash-input');if(i)i.value=q;sendDash()}
+function sendKB(){sendChat('kb-input','kb-msgs','kb-typing',kbData)}
+function kbQ(q){const i=document.getElementById('kb-input');if(i)i.value=q;sendKB()}
+</script>
+</body>
+</html>
